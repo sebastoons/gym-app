@@ -1,56 +1,69 @@
 /* Estilos específicos para el componente Dashboard */
 .dashboard-container {
   min-height: 100vh;
-  background-color: var(--bg-gray);
-  font-family: var(--font-family);
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .dashboard-header {
-  background: var(--primary-gradient);
-  color: var(--white);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
+.dashboard-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-logo-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  /* NO aplicar filtros - mantener colores originales del logo */
+}
+
 .dashboard-header h1 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: 1.8rem;
+  font-weight: 700;
   margin: 0;
 }
 
 .dashboard-user-info {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 1rem;
 }
 
 .dashboard-user-name {
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
 }
 
 .dashboard-user-role {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.25rem var(--spacing-xs);
+  padding: 0.25rem 0.5rem;
   border-radius: 12px;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .dashboard-logout-btn {
   background-color: #dc3545;
-  color: var(--white);
+  color: white;
   border: none;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: var(--font-weight-medium);
-  transition: var(--transition-normal);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .dashboard-logout-btn:hover {
@@ -59,47 +72,47 @@
 }
 
 .dashboard-main {
-  padding: var(--spacing-lg);
+  padding: 2rem;
   display: grid;
-  gap: var(--spacing-lg);
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .dashboard-welcome-card {
-  background-color: var(--white);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.6s ease;
 }
 
 .dashboard-welcome-card h2 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .dashboard-welcome-card p {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
+  color: #718096;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
 .dashboard-user-details {
-  margin-top: var(--spacing-md);
-  background-color: var(--bg-light);
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
-  border-left: 4px solid var(--primary-color);
+  margin-top: 1.5rem;
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
 }
 
 .dashboard-user-details h3 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .dashboard-user-details ul {
@@ -108,24 +121,24 @@
 }
 
 .dashboard-user-details li {
-  margin-bottom: var(--spacing-xs);
-  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  color: #718096;
 }
 
 .dashboard-user-details li strong {
-  color: var(--text-primary);
-  font-weight: var(--font-weight-semibold);
+  color: #2d3748;
+  font-weight: 600;
 }
 
 .dashboard-next-steps {
-  margin-top: var(--spacing-md);
+  margin-top: 1.5rem;
 }
 
 .dashboard-next-steps h3 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .dashboard-next-steps ul {
@@ -134,9 +147,9 @@
 }
 
 .dashboard-next-steps li {
-  margin-bottom: var(--spacing-xs);
-  color: var(--text-secondary);
-  padding-left: var(--spacing-md);
+  margin-bottom: 0.5rem;
+  color: #718096;
+  padding-left: 1.5rem;
   position: relative;
 }
 
@@ -149,38 +162,55 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background-color: #667eea;
 }
 
 .dashboard-status-card {
-  background-color: var(--white);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.8s ease 0.2s both;
 }
 
 .dashboard-status-card h3 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .dashboard-status-item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  margin: var(--spacing-xs) 0;
-  color: var(--text-secondary);
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  color: #718096;
 }
 
 .dashboard-status-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--success-color);
+  background-color: #28a745;
   animation: pulse 2s infinite;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* Grid responsivo para cards */
@@ -193,14 +223,23 @@
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-header {
-    padding: var(--spacing-sm);
+    padding: 1rem;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: 1rem;
     text-align: center;
   }
   
+  .dashboard-header-logo {
+    justify-content: center;
+  }
+  
+  .dashboard-logo-image {
+    width: 30px;
+    height: 30px;
+  }
+  
   .dashboard-header h1 {
-    font-size: var(--font-size-lg);
+    font-size: 1.5rem;
   }
   
   .dashboard-user-info {
@@ -209,11 +248,11 @@
   }
   
   .dashboard-main {
-    padding: var(--spacing-sm);
+    padding: 1rem;
     grid-template-columns: 1fr;
   }
   
   .dashboard-welcome-card {
-    padding: var(--spacing-sm);
+    padding: 1rem;
   }
 }

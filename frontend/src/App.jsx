@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import './styles/global.css'; // ← Importar CSS global
 
 // Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
@@ -11,8 +12,8 @@ const ProtectedRoute = ({ children }) => {
   
   if (loading) {
     return (
-      <div style={styles.loading}>
-        <div style={styles.spinner}></div>
+      <div className="container-center">
+        <div className="spinner"></div>
         <p>Cargando...</p>
       </div>
     );
@@ -27,8 +28,8 @@ const PublicRoute = ({ children }) => {
   
   if (loading) {
     return (
-      <div style={styles.loading}>
-        <div style={styles.spinner}></div>
+      <div className="container-center">
+        <div className="spinner"></div>
         <p>Cargando...</p>
       </div>
     );
@@ -67,9 +68,11 @@ function App() {
             
             {/* Ruta 404 */}
             <Route path="*" element={
-              <div style={styles.notFound}>
+              <div className="container-center">
                 <h1>404 - Página no encontrada</h1>
-                <a href="/" style={styles.homeLink}>Volver al inicio</a>
+                <a href="/" style={{color: '#007bff', textDecoration: 'none', fontSize: '1.1rem', marginTop: '1rem'}}>
+                  Volver al inicio
+                </a>
               </div>
             } />
           </Routes>
@@ -78,39 +81,5 @@ function App() {
     </AuthProvider>
   );
 }
-
-const styles = {
-  loading: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f8f9fa'
-  },
-  spinner: {
-    width: '40px',
-    height: '40px',
-    border: '4px solid #f3f3f3',
-    borderTop: '4px solid #007bff',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite'
-  },
-  notFound: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f8f9fa',
-    textAlign: 'center'
-  },
-  homeLink: {
-    color: '#007bff',
-    textDecoration: 'none',
-    fontSize: '1.1rem',
-    marginTop: '1rem'
-  }
-};
 
 export default App;

@@ -4,16 +4,16 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: var(--primary-gradient);
-  font-family: var(--font-family);
-  padding: var(--spacing-sm);
+  background: linear-gradient(135deg, #0b0b0b, #ab7d23, #0b0b0b);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
 }
 
 .register-box {
-  background-color: var(--white);
-  padding: var(--spacing-xl) 2.5rem;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
+  background-color: white;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 650px;
   position: relative;
@@ -35,53 +35,51 @@
 
 .register-logo-container {
   text-align: center;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 2rem;
 }
 
 .register-logo {
   width: 80px;
   height: 80px;
-  background: var(--primary-gradient);
-  border-radius: var(--border-radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--spacing-sm);
-  font-size: 2.5rem;
-  box-shadow: var(--shadow-primary);
-  animation: fadeIn 0.8s ease 0.2s both;
+  margin: 0 auto 1rem;
+  animation: fadeIn 0.8s ease 0.2s both, pulse 2s infinite;
+}
+
+.register-logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* NO aplicar filtros - mantener colores originales del logo */
 }
 
 .register-title {
   text-align: center;
-  margin-bottom: var(--spacing-xs);
-  color: var(--text-primary);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 15px;
+  color: #2d3748;
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
 }
 
 .register-subtitle {
   text-align: center;
-  color: var(--text-secondary);
-  font-size: var(--font-size-base);
-  margin-bottom: var(--spacing-sm);
-  font-weight: var(--font-weight-normal);
+  color: #718096;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 1.5rem;
 }
 
 .register-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-sm);
+  gap: 1rem;
 }
 
 .register-input-group {
@@ -90,12 +88,12 @@
 
 .register-input, .register-select {
   width: 100%;
-  padding: var(--spacing-sm);
-  border: 2px solid var(--border-light);
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-base);
-  transition: var(--transition-normal);
-  background-color: var(--bg-light);
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
   box-sizing: border-box;
 }
 
@@ -104,30 +102,28 @@
 }
 
 .register-input:focus, .register-select:focus {
-  border-color: var(--primary-color);
-  background-color: var(--white);
+  border-color: #667eea;
+  background-color: white;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   outline: none;
 }
 
 .register-button {
-  padding: var(--spacing-sm);
-  background: var(--success-gradient);
-  color: var(--white);
+  padding: 1rem;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
   border: none;
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: var(--spacing-sm);
-  transition: var(--transition-normal);
-  position: relative;
-  overflow: hidden;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
 }
 
 .register-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-success);
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
 }
 
 .register-button:disabled {
@@ -137,32 +133,32 @@
 }
 
 .register-error {
-  background-color: var(--error-bg);
-  color: var(--error-color);
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius-md);
-  margin-bottom: var(--spacing-sm);
-  border: 1px solid var(--error-border);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  background-color: #fed7d7;
+  color: #c53030;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #feb2b2;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .register-login-link {
   text-align: center;
-  margin-top: var(--spacing-lg);
+  margin-top: 2rem;
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: #718096;
 }
 
 .register-link {
-  color: var(--primary-color);
+  color: #667eea;
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  transition: var(--transition-fast);
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
 .register-link:hover {
-  color: var(--secondary-color);
+  color: #764ba2;
 }
 
 .register-loading-spinner {
@@ -176,14 +172,42 @@
   margin-right: 8px;
 }
 
+/* Animaciones */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .register-container {
-    padding: var(--spacing-xs);
+    padding: 0.5rem;
   }
   
   .register-box {
-    padding: var(--spacing-lg) var(--spacing-sm);
+    padding: 2rem 1rem;
   }
   
   .register-row {
@@ -193,7 +217,6 @@
   .register-logo {
     width: 60px;
     height: 60px;
-    font-size: 2rem;
   }
   
   .register-title {
