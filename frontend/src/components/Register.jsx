@@ -15,6 +15,7 @@ const Register = () => {
     role: 'cliente' // Por defecto cliente
   });
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
   const [loading, setLoading] = useState(false);
   
   const { register } = useAuth();
@@ -25,15 +26,70 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Limpiar error del campo cuando el usuario empieza a escribir
+    if (fieldErrors[e.target.name]) {
+      setFieldErrors({ ...fieldErrors, [e.target.name]: null });
+    }
+    // Limpiar error general
+    if (error) {
+      setError('');
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    
+    // Validar nombre
+    if (!formData.first_name.trim()) {
+      errors.first_name = 'El nombre es requerido';
+    }
+    
+    // Validar apellido
+    if (!formData.last_name.trim()) {
+      errors.last_name = 'El apellido es requerido';
+    }
+    
+    // Validar username
+    if (!formData.username.trim()) {
+      errors.username = 'El nombre de usuario es requerido';
+    } else if (formData.username.length < 3) {
+      errors.username = 'Mínimo 3 caracteres';
+    }
+    
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = 'El email es requerido';
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = 'Formato de email inválido';
+    }
+    
+    // Validar contraseña
+    if (!formData.password) {
+      errors.password = 'La contraseña es requerida';
+    } else if (formData.password.length < 8) {
+      errors.password = 'Mínimo 8 caracteres';
+    }
+    
+    // Validar confirmación de contraseña
+    if (formData.password !== formData.password_confirm) {
+      errors.password_confirm = 'Las contraseñas no coinciden';
+    }
+    
+    return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setFieldErrors({});
 
-    if (formData.password !== formData.password_confirm) {
-      setError('Las contraseñas no coinciden');
+    // Validación del lado del cliente
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setError('Por favor corrige los errores');
       setLoading(false);
       return;
     }
@@ -43,10 +99,33 @@ const Register = () => {
     if (result.success) {
       navigate('/dashboard');
     } else {
-      setError(typeof result.error === 'object' ? 
-        Object.values(result.error).flat().join(', ') : 
-        result.error
-      );
+      // Manejar errores del servidor
+      if (typeof result.error === 'object') {
+        const backendErrors = {};
+        let errorMessages = [];
+        
+        Object.keys(result.error).forEach(key => {
+          const errorValue = result.error[key];
+          const errorText = Array.isArray(errorValue) ? errorValue.join(', ') : errorValue;
+          
+          // Mapear errores comunes
+          if (key === 'username') {
+            backendErrors.username = 'Usuario ya registrado';
+            errorMessages.push('El nombre de usuario ya existe');
+          } else if (key === 'email') {
+            backendErrors.email = 'Email ya registrado';
+            errorMessages.push('El email ya está en uso');
+          } else {
+            backendErrors[key] = errorText;
+            errorMessages.push(errorText);
+          }
+        });
+        
+        setFieldErrors(backendErrors);
+        setError(errorMessages.join('. '));
+      } else {
+        setError(result.error || 'Error al registrar');
+      }
     }
     
     setLoading(false);
@@ -56,16 +135,18 @@ const Register = () => {
     <div className="register-container">
       <div className="register-box">
         {/* Logo Section */}
-        <div className="register-logo-container">
-          <div className="register-logo">🏋️‍♂️</div>
-          <h2 className="register-title">Únete a GymApp</h2>
-          <p className="register-subtitle">Crea tu cuenta y comienza tu entrenamiento</p>
+        <div className="login-logo-image">
+          <img 
+            src="/logo.svg"
+            alt="GymApp Logo" 
+            className="login-logo-img"
+          />
         </div>
-        
+
         {error && <div className="register-error">{error}</div>}
         
         <form onSubmit={handleSubmit} className="register-form">
-          {/* Selector de Rol - Prominente */}
+          {/* Selector de Rol */}
           <div className="register-role-selector">
             <label className="register-label">¿Cómo te vas a registrar?</label>
             <div className="register-role-options">
@@ -109,9 +190,12 @@ const Register = () => {
                 value={formData.first_name}
                 onChange={handleChange}
                 required
-                className="register-input"
+                className={`register-input ${fieldErrors.first_name ? 'error' : ''}`}
                 placeholder="Nombre"
               />
+              {fieldErrors.first_name && (
+                <span className="register-field-error">{fieldErrors.first_name}</span>
+              )}
             </div>
 
             <div className="register-input-group">
@@ -121,9 +205,12 @@ const Register = () => {
                 value={formData.last_name}
                 onChange={handleChange}
                 required
-                className="register-input"
+                className={`register-input ${fieldErrors.last_name ? 'error' : ''}`}
                 placeholder="Apellido"
               />
+              {fieldErrors.last_name && (
+                <span className="register-field-error">{fieldErrors.last_name}</span>
+              )}
             </div>
           </div>
 
@@ -134,9 +221,12 @@ const Register = () => {
               value={formData.username}
               onChange={handleChange}
               required
-              className="register-input"
+              className={`register-input ${fieldErrors.username ? 'error' : ''}`}
               placeholder="Nombre de usuario"
             />
+            {fieldErrors.username && (
+              <span className="register-field-error">{fieldErrors.username}</span>
+            )}
           </div>
 
           <div className="register-input-group">
@@ -146,9 +236,12 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="register-input"
+              className={`register-input ${fieldErrors.email ? 'error' : ''}`}
               placeholder="Correo electrónico"
             />
+            {fieldErrors.email && (
+              <span className="register-field-error">{fieldErrors.email}</span>
+            )}
           </div>
 
           <div className="register-input-group">
@@ -170,9 +263,12 @@ const Register = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="register-input"
-                placeholder="Contraseña"
+                className={`register-input ${fieldErrors.password ? 'error' : ''}`}
+                placeholder="Contraseña (mín. 8)"
               />
+              {fieldErrors.password && (
+                <span className="register-field-error">{fieldErrors.password}</span>
+              )}
             </div>
 
             <div className="register-input-group">
@@ -182,9 +278,12 @@ const Register = () => {
                 value={formData.password_confirm}
                 onChange={handleChange}
                 required
-                className="register-input"
+                className={`register-input ${fieldErrors.password_confirm ? 'error' : ''}`}
                 placeholder="Confirmar contraseña"
               />
+              {fieldErrors.password_confirm && (
+                <span className="register-field-error">{fieldErrors.password_confirm}</span>
+              )}
             </div>
           </div>
 
@@ -201,11 +300,6 @@ const Register = () => {
             ) : `Registrarse como ${formData.role.charAt(0).toUpperCase() + formData.role.slice(1)}`}
           </button>
         </form>
-
-        <div className="register-admin-note">
-          <p><strong>¿Eres administrador?</strong></p>
-          <p>Los administradores deben <a href="/login" className="register-link">iniciar sesión</a> con credenciales especiales</p>
-        </div>
 
         <p className="register-login-link">
           ¿Ya tienes cuenta?{' '}
