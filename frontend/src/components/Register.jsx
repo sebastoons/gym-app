@@ -12,7 +12,7 @@ const Register = () => {
     password: '',
     password_confirm: '',
     phone: '',
-    role: 'cliente'
+    role: 'cliente' // Por defecto cliente
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -57,6 +57,7 @@ const Register = () => {
       <div className="register-box">
         {/* Logo Section */}
         <div className="register-logo-container">
+          <div className="register-logo">🏋️‍♂️</div>
           <h2 className="register-title">Únete a GymApp</h2>
           <p className="register-subtitle">Crea tu cuenta y comienza tu entrenamiento</p>
         </div>
@@ -64,6 +65,42 @@ const Register = () => {
         {error && <div className="register-error">{error}</div>}
         
         <form onSubmit={handleSubmit} className="register-form">
+          {/* Selector de Rol - Prominente */}
+          <div className="register-role-selector">
+            <label className="register-label">¿Cómo te vas a registrar?</label>
+            <div className="register-role-options">
+              <label className={`register-role-option ${formData.role === 'cliente' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="role"
+                  value="cliente"
+                  checked={formData.role === 'cliente'}
+                  onChange={handleChange}
+                />
+                <div className="register-role-card">
+                  <div className="register-role-icon">👤</div>
+                  <h3>Cliente</h3>
+                  <p>Acceso a clases y servicios del gimnasio</p>
+                </div>
+              </label>
+
+              <label className={`register-role-option ${formData.role === 'entrenador' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="role"
+                  value="entrenador"
+                  checked={formData.role === 'entrenador'}
+                  onChange={handleChange}
+                />
+                <div className="register-role-card">
+                  <div className="register-role-icon">💪</div>
+                  <h3>Entrenador</h3>
+                  <p>Gestión de clases y seguimiento de clientes</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
           <div className="register-row">
             <div className="register-input-group">
               <input
@@ -114,29 +151,15 @@ const Register = () => {
             />
           </div>
 
-          <div className="register-row">
-            <div className="register-input-group">
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="register-input"
-                placeholder="Teléfono (opcional)"
-              />
-            </div>
-
-            <div className="register-input-group">
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className="register-select"
-              >
-                <option value="cliente">Cliente</option>
-                <option value="entrenador">Entrenador</option>
-              </select>
-            </div>
+          <div className="register-input-group">
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="register-input"
+              placeholder="Teléfono (opcional)"
+            />
           </div>
 
           <div className="register-row">
@@ -175,9 +198,14 @@ const Register = () => {
                 <span className="register-loading-spinner"></span>
                 Creando cuenta...
               </span>
-            ) : 'Crear Cuenta'}
+            ) : `Registrarse como ${formData.role.charAt(0).toUpperCase() + formData.role.slice(1)}`}
           </button>
         </form>
+
+        <div className="register-admin-note">
+          <p><strong>¿Eres administrador?</strong></p>
+          <p>Los administradores deben <a href="/login" className="register-link">iniciar sesión</a> con credenciales especiales</p>
+        </div>
 
         <p className="register-login-link">
           ¿Ya tienes cuenta?{' '}

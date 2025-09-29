@@ -1,38 +1,28 @@
-/* Estilos específicos para el componente Dashboard */
+/* frontend/src/styles/components/Dashboard.css */
+
 .dashboard-container {
   min-height: 100vh;
-  background-color: #f8f9fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
 }
 
 .dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.dashboard-header-logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.dashboard-logo-image {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  /* NO aplicar filtros - mantener colores originales del logo */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .dashboard-header h1 {
-  font-size: 1.8rem;
+  color: #2d3748;
+  font-size: 1.75rem;
   font-weight: 700;
   margin: 0;
 }
@@ -43,216 +33,380 @@
   gap: 1rem;
 }
 
-.dashboard-user-name {
-  font-weight: 600;
+.dashboard-user-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.dashboard-user-role {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
+.dashboard-user-role-badge {
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashboard-user-name {
+  font-weight: 600;
+  color: #2d3748;
 }
 
 .dashboard-logout-btn {
-  background-color: #dc3545;
+  background: #e53e3e;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .dashboard-logout-btn:hover {
-  background-color: #c82333;
+  background: #c53030;
   transform: translateY(-1px);
 }
 
+/* Main content */
 .dashboard-main {
-  padding: 2rem;
-  display: grid;
-  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
 }
 
 .dashboard-welcome-card {
-  background-color: white;
+  background: white;
+  border-radius: 16px;
   padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.6s ease;
 }
 
-.dashboard-welcome-card h2 {
+.dashboard-welcome-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-welcome-header h2 {
   color: #2d3748;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.dashboard-welcome-card p {
+.dashboard-welcome-header p {
   color: #718096;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  margin: 0;
 }
 
-.dashboard-user-details {
-  margin-top: 1.5rem;
-  background-color: #f8fafc;
+/* Role features */
+.dashboard-role-features {
+  margin: 2rem 0;
+}
+
+.dashboard-role-features h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+}
+
+.dashboard-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.dashboard-feature-item:hover {
+  background: #edf2f7;
+  transform: translateX(2px);
+}
+
+.dashboard-feature-check {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* User details section */
+.dashboard-user-details-section {
+  margin: 2rem 0;
+}
+
+.dashboard-user-details-section h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-info-item {
+  background: #f7fafc;
   padding: 1rem;
   border-radius: 8px;
   border-left: 4px solid #667eea;
+  transition: all 0.2s ease;
 }
 
-.dashboard-user-details h3 {
+.dashboard-info-item:hover {
+  background: #edf2f7;
+  transform: translateY(-1px);
+}
+
+.dashboard-info-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
   color: #2d3748;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.dashboard-role-inline {
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
 }
 
-.dashboard-user-details ul {
-  list-style: none;
-  padding: 0;
-}
-
-.dashboard-user-details li {
-  margin-bottom: 0.5rem;
-  color: #718096;
-}
-
-.dashboard-user-details li strong {
-  color: #2d3748;
-  font-weight: 600;
-}
-
-.dashboard-next-steps {
-  margin-top: 1.5rem;
-}
-
-.dashboard-next-steps h3 {
-  color: #2d3748;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.dashboard-next-steps ul {
-  list-style: none;
-  padding: 0;
-}
-
-.dashboard-next-steps li {
-  margin-bottom: 0.5rem;
-  color: #718096;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.dashboard-next-steps li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #667eea;
-}
-
-.dashboard-status-card {
-  background-color: white;
+/* Admin notice */
+.dashboard-admin-notice {
+  background: linear-gradient(135deg, #e53e3e10, #fc814a10);
+  border: 1px solid #feb2b2;
+  border-radius: 12px;
   padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.8s ease 0.2s both;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.dashboard-admin-notice h4 {
+  margin: 0 0 0.5rem 0;
+  color: #c53030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dashboard-admin-notice p {
+  margin: 0;
+  color: #744210;
+  font-size: 0.95rem;
+}
+
+/* Development roadmap */
+.dashboard-development-roadmap {
+  margin: 2rem 0;
+}
+
+.dashboard-development-roadmap h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-roadmap-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard-roadmap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-roadmap-item:hover {
+  transform: translateX(4px);
+}
+
+.dashboard-roadmap-item.completed {
+  background: linear-gradient(135deg, #38a16910, #68d39110);
+  border-left: 4px solid #38a169;
+}
+
+.dashboard-roadmap-item.in-progress {
+  background: linear-gradient(135deg, #ed8a1510, #f6ad5510);
+  border-left: 4px solid #ed8a15;
+}
+
+.dashboard-roadmap-item.pending {
+  background: linear-gradient(135deg, #a0aec010, #cbd5e010);
+  border-left: 4px solid #a0aec0;
+}
+
+.dashboard-roadmap-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.dashboard-roadmap-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #2d3748;
+}
+
+.dashboard-roadmap-item p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+/* Status card */
+.dashboard-status-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  animation: fadeIn 0.6s ease 0.2s both;
 }
 
 .dashboard-status-card h3 {
   color: #2d3748;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
 }
 
 .dashboard-status-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
-  color: #718096;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f7fafc;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.dashboard-status-item:last-child {
+  border-bottom: none;
 }
 
 .dashboard-status-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background-color: #28a745;
+  background: #cbd5e0;
+  flex-shrink: 0;
+}
+
+.dashboard-status-dot.active {
+  background: #38a169;
+  box-shadow: 0 0 6px rgba(56, 161, 105, 0.4);
   animation: pulse 2s infinite;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* Grid responsivo para cards */
-@media (min-width: 768px) {
+/* Responsive design */
+@media (max-width: 1024px) {
   .dashboard-main {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .dashboard-header {
     padding: 1rem;
+  }
+  
+  .dashboard-header-content {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
   
-  .dashboard-header-logo {
-    justify-content: center;
+  .dashboard-user-details {
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
-  .dashboard-logo-image {
-    width: 30px;
-    height: 30px;
+  .dashboard-main {
+    padding: 1rem;
+  }
+  
+  .dashboard-welcome-card {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
   }
   
   .dashboard-header h1 {
     font-size: 1.5rem;
   }
-  
-  .dashboard-user-info {
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .dashboard-welcome-header h2 {
+    font-size: 1.25rem;
+    flex-direction: column;
+    gap: 0.25rem;
   }
   
-  .dashboard-main {
-    padding: 1rem;
-    grid-template-columns: 1fr;
+  .dashboard-roadmap-item {
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
-  .dashboard-welcome-card {
-    padding: 1rem;
+  .dashboard-roadmap-icon {
+    align-self: flex-start;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
   }
 }

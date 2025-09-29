@@ -10,6 +10,7 @@ const Login = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -37,13 +38,59 @@ const Login = () => {
     setLoading(false);
   };
 
+  const handleAdminQuickLogin = () => {
+    setFormData({
+      username: 'admin',
+      password: 'admin123'
+    });
+    setIsAdminLogin(true);
+  };
+
   return (
     <div className="login-container">
       <div className="login-box">
         <div className="login-logo-container">
-          <img src="./logo.svg" alt="GymApp Logo" className="login-logo login-logo-image" />
+          <div className="login-logo">🏋️‍♂️</div>
           <h2 className="login-title">Iniciar Sesión</h2>
+          <p className="login-subtitle">Accede a tu cuenta de GymApp</p>
         </div>
+        
+        {/* Selector de tipo de usuario */}
+        <div className="login-user-type-selector">
+          <div className="login-user-types">
+            <button
+              type="button"
+              className={`login-user-type ${!isAdminLogin ? 'active' : ''}`}
+              onClick={() => {
+                setIsAdminLogin(false);
+                setFormData({ username: '', password: '' });
+                setError('');
+              }}
+            >
+              <span className="login-user-icon">👤</span>
+              Cliente / Entrenador
+            </button>
+            <button
+              type="button"
+              className={`login-user-type ${isAdminLogin ? 'active' : ''}`}
+              onClick={() => {
+                setIsAdminLogin(true);
+                setFormData({ username: 'admin', password: 'admin123' });
+                setError('');
+              }}
+            >
+              <span className="login-user-icon">⚙️</span>
+              Administrador
+            </button>
+          </div>
+        </div>
+
+        {isAdminLogin && (
+          <div className="login-admin-notice">
+            <p>🔐 <strong>Acceso de Administrador</strong></p>
+            <p>Credenciales pre-cargadas para acceso administrativo</p>
+          </div>
+        )}
         
         {error && <div className="login-error">{error}</div>}
         
@@ -56,7 +103,8 @@ const Login = () => {
               onChange={handleChange}
               required
               className="login-input"
-              placeholder="Ingresa tu usuario"
+              placeholder={isAdminLogin ? "admin (pre-cargado)" : "Ingresa tu usuario"}
+              readOnly={isAdminLogin}
             />
           </div>
 
@@ -68,27 +116,59 @@ const Login = () => {
               onChange={handleChange}
               required
               className="login-input"
-              placeholder="Ingresa tu contraseña"
+              placeholder={isAdminLogin ? "admin123 (pre-cargado)" : "Ingresa tu contraseña"}
+              readOnly={isAdminLogin}
             />
           </div>
 
           <button 
             type="submit" 
             disabled={loading}
-            className="login-button"
+            className={`login-button ${isAdminLogin ? 'admin' : ''}`}
           >
             {loading ? (
               <>
                 <span className="login-loading-spinner"></span>
                 Iniciando sesión...
               </>
-            ) : 'Iniciar Sesión'}
+            ) : (
+              <>
+                {isAdminLogin ? '🔐 ' : ''}
+                Iniciar Sesión {isAdminLogin ? 'como Administrador' : ''}
+              </>
+            )}
           </button>
         </form>
+
+        {!isAdminLogin && (
+          <>
+            <div className="login-divider">
+              <span>o</span>
+            </div>
+            
+            <button 
+              type="button"
+              onClick={handleAdminQuickLogin}
+              className="login-admin-access"
+            >
+              🔐 Acceso Rápido de Administrador
+            </button>
+          </>
+        )}
 
         <p className="login-register-link">
           ¿No tienes cuenta? <a href="/register" className="login-link">Regístrate</a>
         </p>
+
+        {/* Información de roles */}
+        <div className="login-roles-info">
+          <h4>Tipos de Usuario:</h4>
+          <ul>
+            <li><strong>Cliente:</strong> Reserva clases, gestiona membresías</li>
+            <li><strong>Entrenador:</strong> Maneja clases y seguimiento</li>
+            <li><strong>Administrador:</strong> Control total del sistema</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

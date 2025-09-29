@@ -1,36 +1,22 @@
-/* Estilos específicos para el componente Register */
+/* frontend/src/styles/components/Register.css */
+
 .register-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0b0b0b, #ab7d23, #0b0b0b);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
 }
 
 .register-box {
-  background-color: white;
-  padding: 3rem 2.5rem;
+  background: white;
   border-radius: 20px;
+  padding: 2.5rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 650px;
-  position: relative;
-  overflow: hidden;
+  max-width: 500px;
   animation: fadeIn 0.6s ease;
-}
-
-.register-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-  background-size: 300% 300%;
-  animation: gradient 3s ease infinite;
 }
 
 .register-logo-container {
@@ -39,41 +25,104 @@
 }
 
 .register-logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1rem;
-  animation: fadeIn 0.8s ease 0.2s both, pulse 2s infinite;
-}
-
-.register-logo-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  /* NO aplicar filtros - mantener colores originales del logo */
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
 }
 
 .register-title {
-  text-align: center;
-  margin-bottom: 15px;
   color: #2d3748;
-  font-size: 1.8em;
-  font-weight: bold;
-  font-family: 'Audiowide', cursive;
-  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .register-subtitle {
-  text-align: center;
   color: #718096;
   font-size: 1rem;
-  margin-bottom: 1rem;
-  font-weight: 400;
+  margin: 0;
 }
 
+/* Selector de roles */
+.register-role-selector {
+  margin-bottom: 2rem;
+}
+
+.register-label {
+  display: block;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.register-role-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.register-role-option {
+  cursor: pointer;
+  position: relative;
+}
+
+.register-role-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.register-role-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: white;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-role-card:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.register-role-option.selected .register-role-card {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea10, #764ba220);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.register-role-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.register-role-card h3 {
+  margin: 0.5rem 0 0.25rem 0;
+  font-size: 1.1rem;
+  color: #2d3748;
+}
+
+.register-role-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #718096;
+  line-height: 1.3;
+}
+
+/* Formulario */
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .register-row {
@@ -83,47 +132,43 @@
 }
 
 .register-input-group {
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.register-input, .register-select {
+.register-input {
   width: 100%;
-  padding: 1rem;
+  padding: 0.875rem 1rem;
   border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background-color: #f8fafc;
-  box-sizing: border-box;
+  background: white;
 }
 
-.register-select {
-  cursor: pointer;
-}
-
-.register-input:focus, .register-select:focus {
-  border-color: #667eea;
-  background-color: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+.register-input:focus {
   outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .register-button {
-  padding: 1rem;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 12px;
+  padding: 1rem;
+  border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem;
   transition: all 0.3s ease;
+  margin-top: 1rem;
 }
 
 .register-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
 }
 
 .register-button:disabled {
@@ -132,94 +177,113 @@
   transform: none;
 }
 
-.register-error {
-  background-color: #fed7d7;
-  color: #c53030;
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  border: 1px solid #feb2b2;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.register-login-link {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-  color: #718096;
-}
-
-.register-link {
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.register-link:hover {
-  color: #764ba2;
-}
-
 .register-loading-spinner {
   display: inline-block;
   width: 16px;
   height: 16px;
   border: 2px solid transparent;
-  border-top: 2px solid white;
+  border-top: 2px solid currentColor;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+/* Admin note */
+.register-admin-note {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.register-admin-note p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #4a5568;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+/* Links */
+.register-login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #4a5568;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.register-link {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+/* Error */
+.register-error {
+  background: #fed7d7;
+  color: #c53030;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .register-container {
-    padding: 0.5rem;
+    padding: 1rem;
   }
   
   .register-box {
-    padding: 2rem 1rem;
+    padding: 2rem;
+  }
+  
+  .register-role-options {
+    grid-template-columns: 1fr;
   }
   
   .register-row {
     grid-template-columns: 1fr;
   }
   
-  .register-logo {
-    width: 60px;
-    height: 60px;
+  .register-title {
+    font-size: 1.75rem;
   }
   
-  .register-title {
-    font-size: 1.5rem;
+  .register-logo {
+    font-size: 3rem;
   }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
