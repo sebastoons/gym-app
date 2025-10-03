@@ -1,77 +1,21 @@
 /* frontend/src/styles/components/DashboardAdmin.css */
 
+/* ========== CONTAINER Y LAYOUT ========== */
 .dashboard-admin-container {
   min-height: 100vh;
   background: #f8f9fa;
 }
 
+/* ========== HEADER ========== */
 .dashboard-admin-header {
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-bottom: 3px solid #e53e3e;
   padding: 1.5rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.dashboard-admin-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.dashboard-admin-header h1 {
-  color: #2d3748;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.dashboard-admin-user-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.dashboard-admin-user-name {
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.admin-badge {
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.dashboard-admin-logout-btn {
-  background: #e53e3e;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dashboard-admin-logout-btn:hover {
-  background: #c53030;
-}
-
-/* Navigation Tabs */
-.admin-nav {
-  background: white;
-  border-bottom: 2px solid #e2e8f0;
-  position: sticky;
-  top: 80px;
+  top: 90px;
   z-index: 99;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .admin-nav-content {
@@ -95,8 +39,7 @@
 }
 
 .nav-tab:hover {
-  color: #2d3748;
-  background: #f7fafc;
+  color: #e53e3e;
 }
 
 .nav-tab.active {
@@ -104,64 +47,21 @@
   border-bottom-color: #e53e3e;
 }
 
-/* Main Content */
+.nav-icon {
+  margin-right: 0.5rem;
+}
+
+/* ========== MAIN CONTENT ========== */
 .dashboard-admin-main {
   max-width: 1600px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.admin-section {
   animation: fadeIn 0.6s ease;
 }
 
-/* Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card-admin {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.stat-card-admin:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.stat-card-admin.highlight {
-  border-left: 4px solid #e53e3e;
-}
-
-.stat-icon-admin {
-  font-size: 3rem;
-  opacity: 0.9;
-}
-
-.stat-content h3 {
-  color: #718096;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.stat-number {
-  color: #2d3748;
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-/* Admin Card */
 .admin-card {
   background: white;
   padding: 1.5rem;
@@ -170,106 +70,339 @@
   margin-bottom: 2rem;
 }
 
-.admin-card h3,
 .admin-card h4 {
+  margin: 0 0 1rem 0;
   color: #2d3748;
-  font-size: 1.25rem;
-  margin: 0 0 1.5rem 0;
-}
-
-/* Gráfico de ingresos */
-.ingresos-chart {
   display: flex;
-  align-items: flex-end;
-  gap: 1.5rem;
-  height: 250px;
-  padding: 1rem;
-  background: #f7fafc;
-  border-radius: 8px;
-}
-
-.chart-bar-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
 
-.chart-bar {
-  width: 100%;
-  background: linear-gradient(to top, #e53e3e, #fc8181);
-  border-radius: 8px 8px 0 0;
-  position: relative;
-  min-height: 40px;
+.section-header {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 0.5rem;
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  alignItems: center;
+  margin-bottom: 2rem;
 }
 
-.chart-bar:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
+.section-header h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-.chart-value {
+/* ========== OVERVIEW - KPIs ========== */
+.admin-overview {
+  animation: fadeIn 0.6s ease;
+}
+
+.admin-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
   color: white;
-  font-weight: 700;
-  font-size: 0.85rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.chart-label {
-  color: #4a5568;
-  font-size: 0.8rem;
+.kpi-activos {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.kpi-deudores {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+}
+
+.kpi-utilidad {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+}
+
+.kpi-asistencia {
+  background: linear-gradient(135deg, #ed8936, #f6ad55);
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-/* Alertas */
-.admin-alerts {
+.kpi-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.kpi-meta {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+/* ========== ALERTAS CRÍTICAS ========== */
+.admin-alertas-criticas {
+  background: #fff5f5;
+  border: 2px solid #fc8181;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-alertas-criticas h3 {
+  color: #c53030;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alertas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.alerta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alerta-texto {
+  color: #742a2a;
+}
+
+.alerta-texto strong {
+  font-weight: 700;
+}
+
+.btn-alerta-deudores {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-alerta-deudores:hover {
+  background: #c53030;
+}
+
+.btn-alerta-membresias {
+  background: #ed8936;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-alerta-membresias:hover {
+  background: #dd6b20;
+}
+
+/* ========== GRÁFICOS ========== */
+.admin-graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grafico-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grafico-card h3 {
+  margin: 0 0 1.5rem 0;
+  color: #2d3748;
+}
+
+/* Distribución de Membresías */
+.membresias-distribucion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.membresia-item {
+  width: 100%;
+}
+
+.membresia-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.membresia-nombre {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.membresia-cantidad {
+  color: #718096;
+}
+
+.membresia-barra {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.membresia-progreso {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* Estado Financiero */
+.estado-financiero {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.financiero-item {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.financiero-ingresos {
+  background: #f0fff4;
+  border-left: 4px solid #38a169;
+}
+
+.financiero-egresos {
+  background: #fff5f5;
+  border-left: 4px solid #e53e3e;
+}
+
+.financiero-utilidad {
+  background: linear-gradient(135deg, #667eea10, #764ba220);
+  border-left: 4px solid #667eea;
+}
+
+.financiero-label {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.financiero-ingresos .financiero-label {
+  color: #22543d;
+}
+
+.financiero-egresos .financiero-label {
+  color: #742a2a;
+}
+
+.financiero-utilidad .financiero-label {
+  color: #5a67d8;
+}
+
+.financiero-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.financiero-ingresos .financiero-valor {
+  color: #38a169;
+}
+
+.financiero-egresos .financiero-valor {
+  color: #e53e3e;
+}
+
+.financiero-utilidad .financiero-valor {
+  color: #667eea;
+}
+
+/* ========== CLIENTES ========== */
+.clientes-resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.alert-card {
-  padding: 1.25rem;
+.resumen-card {
+  background: white;
+  padding: 1.5rem;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  border-left: 4px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.alert-card.warning {
-  background: #fef5e7;
-  border-color: #ed8936;
+.resumen-activos {
+  border-left: 4px solid #38a169;
 }
 
-.alert-card.info {
-  background: #e6fffa;
-  border-color: #38b2ac;
+.resumen-inactivos {
+  border-left: 4px solid #a0aec0;
 }
 
-.alert-icon {
+.resumen-deudores {
+  border-left: 4px solid #e53e3e;
+}
+
+.resumen-por-vencer {
+  border-left: 4px solid #ed8936;
+}
+
+.resumen-label {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.resumen-valor {
   font-size: 2rem;
+  font-weight: 700;
 }
 
-.alert-card strong {
-  display: block;
-  color: #2d3748;
-  margin-bottom: 0.25rem;
+.resumen-activos .resumen-valor {
+  color: #38a169;
 }
 
-.alert-card p {
-  color: #4a5568;
-  font-size: 0.9rem;
-  margin: 0;
+.resumen-inactivos .resumen-valor {
+  color: #a0aec0;
 }
 
-/* Tablas */
+.resumen-deudores .resumen-valor {
+  color: #e53e3e;
+}
+
+.resumen-por-vencer .resumen-valor {
+  color: #ed8936;
+}
+
+.resumen-meta {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 0.5rem;
+}
+
+.resumen-meta-alerta {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* ========== TABLAS ========== */
 .table-responsive {
   overflow-x: auto;
 }
@@ -289,8 +422,6 @@
   font-size: 0.85rem;
   font-weight: 700;
   color: #4a5568;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   border-bottom: 2px solid #e2e8f0;
 }
 
@@ -309,102 +440,243 @@
   background: #f7fafc;
 }
 
-.admin-table.compact td {
-  padding: 0.75rem;
-}
-
-/* Ocupación */
-.ocupacion-bar {
-  position: relative;
-  width: 100%;
-  height: 24px;
-  background: #e2e8f0;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.ocupacion-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #38a169, #48bb78);
-  transition: width 0.3s ease;
-}
-
-.ocupacion-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.75rem;
+/* Estilos específicos de tabla */
+.deuda-valor {
+  color: #e53e3e;
   font-weight: 700;
-  color: #2d3748;
+  font-size: 1.1rem;
 }
 
-/* Badges */
-.badge {
+.badge-meses {
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 600;
-  display: inline-block;
 }
 
-.badge-full {
+.badge-critico {
   background: #fed7d7;
   color: #c53030;
 }
 
-.badge-available {
-  background: #c6f6d5;
-  color: #22543d;
-}
-
-.badge-premium {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-}
-
-.badge-básica {
-  background: #e2e8f0;
-  color: #2d3748;
-}
-
-.badge-active {
-  background: #c6f6d5;
-  color: #22543d;
-}
-
-.badge-inactive {
-  background: #fed7d7;
-  color: #c53030;
-}
-
-.badge-success {
-  background: #c6f6d5;
-  color: #22543d;
-}
-
-.badge-pending {
+.badge-alerta {
   background: #fef5e7;
   color: #c05621;
 }
 
-/* Section Header */
-.section-header {
+.fecha-texto {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+/* ========== ENTRENADORES ========== */
+.entrenadores-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.stat-valor {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-verde {
+  color: #38a169;
+}
+
+.stat-morado {
+  color: #667eea;
+}
+
+.stat-naranja {
+  color: #ed8936;
+}
+
+.stat-gris {
+  color: #4a5568;
+}
+
+.entrenador-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.entrenador-info strong {
+  color: #2d3748;
+}
+
+.entrenador-fecha {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.badge-contrato {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-indefinido {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-plazo {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.sueldo-valor {
+  color: #38a169;
+  font-size: 1rem;
+}
+
+.calificacion-valor {
+  color: #ed8936;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* ========== IMPLEMENTACIONES ========== */
+.badge-estado {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-excelente {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-bueno {
+  background: #bee3f8;
+  color: #2c5282;
+}
+
+.badge-regular {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.badge-malo {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+/* ========== FACTURACIÓN ========== */
+.facturacion-resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.facturacion-card {
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.facturacion-ingresos {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+}
+
+.facturacion-egresos {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+}
+
+.facturacion-utilidad-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.facturacion-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.facturacion-valor {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.facturacion-meta {
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+.facturacion-desglose {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.desglose-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.desglose-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-.section-header h3 {
+.desglose-ingreso {
+  background: #f0fff4;
+}
+
+.desglose-egreso {
+  background: #fff5f5;
+}
+
+.desglose-concepto {
+  font-weight: 600;
   color: #2d3748;
-  font-size: 1.5rem;
-  margin: 0;
 }
 
-/* Buttons */
+.desglose-monto {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.desglose-ingreso .desglose-monto {
+  color: #38a169;
+}
+
+.desglose-egreso .desglose-monto {
+  color: #e53e3e;
+}
+
+/* ========== BOTONES ========== */
 .btn-primary {
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -416,28 +688,32 @@
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-.btn-secondary {
-  background: transparent;
-  border: 2px solid #e2e8f0;
-  color: #4a5568;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+.btn-primary-green {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.85rem;
+  transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
-  border-color: #cbd5e0;
-  background: #f7fafc;
+.btn-primary-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
 }
 
-.btn-action {
-  background: #667eea;
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-recordatorio {
+  background: #e53e3e;
   color: white;
   border: none;
   padding: 0.4rem 0.8rem;
@@ -445,11 +721,33 @@
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.btn-action:hover {
-  background: #5a67d8;
+.btn-recordatorio:hover {
+  background: #c53030;
+}
+
+.btn-detalles {
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  color: #4a5568;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-detalles:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.action-icons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .btn-icon {
@@ -465,232 +763,41 @@
   transform: scale(1.2);
 }
 
-.action-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* Search Bar */
-.search-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.search-bar input:focus {
-  outline: none;
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
-}
-
-.btn-search {
-  padding: 0.75rem 1.5rem;
-  background: #e53e3e;
+.btn-mantenimiento {
+  background: #667eea;
   color: white;
   border: none;
-  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.btn-search:hover {
-  background: #c53030;
+.btn-mantenimiento:hover {
+  background: #5a67d8;
 }
 
-/* Entrenadores Grid */
-.entrenadores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+/* ========== ANIMACIONES ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.entrenador-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.entrenador-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.entrenador-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #f7fafc;
-}
-
-.entrenador-avatar {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #38a169, #48bb78);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.entrenador-info h4 {
-  margin: 0 0 0.25rem 0;
-  color: #2d3748;
-  font-size: 1.1rem;
-}
-
-.entrenador-info p {
-  margin: 0 0 0.5rem 0;
-  color: #718096;
-  font-size: 0.9rem;
-}
-
-.rating {
-  color: #ed8936;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.entrenador-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: #f7fafc;
-  border-radius: 8px;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-label {
-  display: block;
-  color: #718096;
-  font-size: 0.75rem;
-  margin-bottom: 0.25rem;
-}
-
-.stat-item strong {
-  color: #2d3748;
-  font-size: 1.1rem;
-}
-
-.entrenador-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.entrenador-actions .btn-secondary {
-  flex: 1;
-}
-
-/* Finanzas Grid */
-.finanzas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.pagos-entrenadores-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.pago-entrenador-item {
-  padding: 1rem;
-  background: #f7fafc;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.pago-entrenador-item:hover {
-  background: #edf2f7;
-}
-
-.pago-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.pago-info strong {
-  color: #2d3748;
-}
-
-.pago-fecha {
-  color: #718096;
-  font-size: 0.85rem;
-}
-
-.pago-monto-large {
-  color: #38a169;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.total-pagos {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, #38a169, #48bb78);
-  color: white;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.total-amount {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.dias-restantes {
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.dias-restantes.urgente {
-  background: #fed7d7;
-  color: #c53030;
-}
-
-.dias-restantes.normal {
-  background: #fef5e7;
-  color: #c05621;
-}
-
-/* Responsive */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 1200px) {
-  .stats-grid {
+  .admin-kpis {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .finanzas-grid {
+  .facturacion-desglose {
     grid-template-columns: 1fr;
   }
 }
@@ -704,6 +811,11 @@
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+  
+  .header-left {
+    flex-direction: column;
+    gap: 1rem;
   }
   
   .dashboard-admin-main {
@@ -721,12 +833,8 @@
     white-space: nowrap;
   }
   
-  .stats-grid {
+  .admin-kpis {
     grid-template-columns: 1fr;
-  }
-  
-  .ingresos-chart {
-    height: 200px;
   }
   
   .section-header {
@@ -735,15 +843,19 @@
     gap: 1rem;
   }
   
-  .search-bar {
-    flex-direction: column;
-  }
-  
-  .entrenadores-grid {
+  .admin-graficos {
     grid-template-columns: 1fr;
   }
   
-  .finanzas-grid {
+  .clientes-resumen {
+    grid-template-columns: 1fr;
+  }
+  
+  .entrenadores-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .facturacion-resumen {
     grid-template-columns: 1fr;
   }
   
@@ -758,32 +870,102 @@
 }
 
 @media (max-width: 480px) {
-  .dashboard-admin-header h1 {
+  .header-title h1 {
     font-size: 1.5rem;
   }
   
-  .stat-card-admin {
-    flex-direction: column;
-    text-align: center;
+  .kpi-value {
+    font-size: 2rem;
   }
   
-  .entrenador-stats {
-    grid-template-columns: 1fr;
+  .facturacion-valor {
+    font-size: 2rem;
   }
-  
-  .entrenador-actions {
-    flex-direction: column;
-  }
+}: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.dashboard-admin-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
 }
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.admin-logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+}
+
+.header-title h1 {
+  color: white;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.header-title p {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: white;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+}
+
+.btn-logout {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: #c53030;
+  transform: translateY(-2px);
+}
+
+/* ========== NAVIGATION TABS ========== */
+.admin-nav {
+  background: white;
+  border-bottom: 2px solid #e2e8f0;
+  position
