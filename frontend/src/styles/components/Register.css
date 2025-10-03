@@ -184,6 +184,43 @@
   letter-spacing: 0.5px;
 }
 
+/* Indicador de fortaleza de contraseña */
+.password-strength-indicator {
+  margin-top: 5px;
+  position: relative;
+}
+
+.password-strength-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  margin-bottom: 5px;
+}
+
+.password-strength-text {
+  font-size: 0.7em;
+  font-weight: bold;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+}
+
+.password-requirements {
+  margin-top: 5px;
+  padding: 8px;
+  background: #f7fafc;
+  border-radius: 6px;
+  border-left: 3px solid #ed8936;
+}
+
+.password-requirement {
+  display: block;
+  font-size: 0.65em;
+  color: #ed8936;
+  font-family: 'Quantico';
+  line-height: 1.6;
+  font-weight: 600;
+}
+
 .register-button {
   width: 100%;
   background: linear-gradient(135deg, #ba6e00, #e3a244, #ba6e00);
@@ -264,7 +301,71 @@
   font-weight: bold;
   border: 2px solid #fc8181;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   animation: shake 0.5s ease;
+}
+
+.register-error-icon {
+  font-size: 1.2em;
+}
+
+/* Lista de errores detallada */
+.register-error-list {
+  background: #fed7d7;
+  border: 2px solid #fc8181;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  animation: shake 0.5s ease;
+}
+
+.register-error-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 8px;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+  font-size: 0.75em;
+  color: #c53030;
+}
+
+.register-error-header .register-error-icon {
+  font-size: 1.3em;
+}
+
+.register-error-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.register-error-items li {
+  font-size: 0.7em;
+  color: #742a2a;
+  font-family: 'Quantico';
+  padding-left: 20px;
+  position: relative;
+}
+
+.register-error-items li::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: #c53030;
+  font-weight: bold;
+}
+
+.register-error-items li strong {
+  color: #c53030;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Animación de shake para el error */

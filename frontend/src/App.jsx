@@ -4,7 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-import './styles/global.css'; // ← Importar CSS global
+import './styles/global.css';
 
 // Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
   
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
 // Componente para rutas públicas (redirige si ya está autenticado)
@@ -35,7 +35,9 @@ const PublicRoute = ({ children }) => {
     );
   }
   
-  return !isAuthenticated ? children : <Navigate to="/dashboard" />;
+  // Si está autenticado, redirigir al dashboard
+  // IMPORTANTE: usar 'replace' para que no se pueda volver atrás
+  return !isAuthenticated ? children : <Navigate to="/dashboard" replace />;
 };
 
 function App() {
@@ -45,7 +47,7 @@ function App() {
         <div className="App">
           <Routes>
             {/* Ruta por defecto */}
-            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             
             {/* Rutas públicas */}
             <Route path="/login" element={

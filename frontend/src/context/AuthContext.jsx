@@ -23,8 +23,10 @@ export const AuthProvider = ({ children }) => {
           const userData = await authAPI.getProfile();
           setUser(userData);
         } catch (error) {
+          // Si el token es inválido, limpiar todo
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
+          setUser(null);
         }
       }
       setLoading(false);
@@ -41,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { 
         success: false, 
-        error: error.response?.data?.detail || 'Error de login' 
+        error: error.response?.data?.detail || error.message || 'Error de login' 
       };
     }
   };
@@ -54,18 +56,26 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { 
         success: false, 
-        error: error.response?.data || 'Error de registro' 
+        error: error.response?.data || error.message || 'Error de registro' 
       };
     }
   };
 
   const logout = async () => {
     try {
+      // Intentar hacer logout en el servidor
       await authAPI.logout();
     } catch (error) {
-      console.error('Error en logout:', error);
+      console.error('Error en logout del servidor:', error);
+      // Continuar con el logout local aunque falle el servidor
     } finally {
+      // CRÍTICO: Limpiar TODO el estado local
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
       setUser(null);
+      
+      // Forzar recarga completa de la página para limpiar cualquier estado residual
+      window.location.href = '/login';
     }
   };
 

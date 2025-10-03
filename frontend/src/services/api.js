@@ -28,10 +28,16 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Si el error es 401 (no autorizado), limpiar todo y redirigir
     if (error.response?.status === 401) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      window.location.href = '/login';
+      
+      // Solo redirigir si no estamos ya en login o register
+      const currentPath = window.location.pathname;
+      if (currentPath !== '/login' && currentPath !== '/register') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
@@ -59,11 +65,15 @@ export const authAPI = {
 
   logout: async () => {
     const refreshToken = localStorage.getItem('refresh_token');
-    if (refreshToken) {
-      await api.post('/auth/logout/', { refresh: refreshToken });
+    try {
+      if (refreshToken) {
+        await api.post('/auth/logout/', { refresh: refreshToken });
+      }
+    } finally {
+      // Siempre limpiar el localStorage, aunque falle la petición
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
     }
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
   },
 
   getProfile: async () => {

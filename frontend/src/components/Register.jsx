@@ -12,25 +12,73 @@ const Register = () => {
     password: '',
     password_confirm: '',
     phone: '',
-    role: 'cliente' // Por defecto cliente
+    role: 'cliente'
   });
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState({
+    score: 0,
+    feedback: []
+  });
   
   const { register } = useAuth();
   const navigate = useNavigate();
 
+  const validatePasswordStrength = (password) => {
+    const feedback = [];
+    let score = 0;
+
+    if (password.length >= 8) {
+      score += 1;
+    } else {
+      feedback.push('Mínimo 8 caracteres');
+    }
+
+    if (/[A-Z]/.test(password)) {
+      score += 1;
+    } else {
+      feedback.push('Incluye una mayúscula');
+    }
+
+    if (/[a-z]/.test(password)) {
+      score += 1;
+    } else {
+      feedback.push('Incluye una minúscula');
+    }
+
+    if (/[0-9]/.test(password)) {
+      score += 1;
+    } else {
+      feedback.push('Incluye un número');
+    }
+
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      score += 1;
+    } else {
+      feedback.push('Incluye un carácter especial');
+    }
+
+    return { score, feedback };
+  };
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
-    // Limpiar error del campo cuando el usuario empieza a escribir
-    if (fieldErrors[e.target.name]) {
-      setFieldErrors({ ...fieldErrors, [e.target.name]: null });
+
+    // Validar fortaleza de contraseña en tiempo real
+    if (name === 'password') {
+      const strength = validatePasswordStrength(value);
+      setPasswordStrength(strength);
     }
-    // Limpiar error general
+
+    // Limpiar error del campo cuando el usuario empieza a escribir
+    if (fieldErrors[name]) {
+      setFieldErrors({ ...fieldErrors, [name]: null });
+    }
     if (error) {
       setError('');
     }
@@ -42,11 +90,19 @@ const Register = () => {
     // Validar nombre
     if (!formData.first_name.trim()) {
       errors.first_name = 'El nombre es requerido';
+    } else if (formData.first_name.length < 2) {
+      errors.first_name = 'Mínimo 2 caracteres';
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.first_name)) {
+      errors.first_name = 'Solo letras permitidas';
     }
     
     // Validar apellido
     if (!formData.last_name.trim()) {
       errors.last_name = 'El apellido es requerido';
+    } else if (formData.last_name.length < 2) {
+      errors.last_name = 'Mínimo 2 caracteres';
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.last_name)) {
+      errors.last_name = 'Solo letras permitidas';
     }
     
     // Validar username
@@ -54,6 +110,8 @@ const Register = () => {
       errors.username = 'El nombre de usuario es requerido';
     } else if (formData.username.length < 3) {
       errors.username = 'Mínimo 3 caracteres';
+    } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
+      errors.username = 'Solo letras, números y guión bajo';
     }
     
     // Validar email
@@ -64,15 +122,42 @@ const Register = () => {
       errors.email = 'Formato de email inválido';
     }
     
-    // Validar contraseña
+    // Validar teléfono (si se proporciona)
+    if (formData.phone && formData.phone.trim()) {
+      const phoneRegex = /^[0-9+\s()-]{8,15}$/;
+      if (!phoneRegex.test(formData.phone)) {
+        errors.phone = 'Formato de teléfono inválido';
+      }
+    }
+    
+    // Validar contraseña con requisitos específicos
     if (!formData.password) {
       errors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 8) {
-      errors.password = 'Mínimo 8 caracteres';
+    } else {
+      const passwordErrors = [];
+      
+      if (formData.password.length < 8) {
+        passwordErrors.push('mínimo 8 caracteres');
+      }
+      if (!/[A-Z]/.test(formData.password)) {
+        passwordErrors.push('una mayúscula');
+      }
+      if (!/[a-z]/.test(formData.password)) {
+        passwordErrors.push('una minúscula');
+      }
+      if (!/[0-9]/.test(formData.password)) {
+        passwordErrors.push('un número');
+      }
+      
+      if (passwordErrors.length > 0) {
+        errors.password = `Debe contener: ${passwordErrors.join(', ')}`;
+      }
     }
     
     // Validar confirmación de contraseña
-    if (formData.password !== formData.password_confirm) {
+    if (!formData.password_confirm) {
+      errors.password_confirm = 'Confirma tu contraseña';
+    } else if (formData.password !== formData.password_confirm) {
       errors.password_confirm = 'Las contraseñas no coinciden';
     }
     
@@ -89,7 +174,7 @@ const Register = () => {
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setError('Por favor corrige los errores');
+      setError('Por favor corrige los errores en el formulario');
       setLoading(false);
       return;
     }
@@ -108,13 +193,26 @@ const Register = () => {
           const errorValue = result.error[key];
           const errorText = Array.isArray(errorValue) ? errorValue.join(', ') : errorValue;
           
-          // Mapear errores comunes
+          // Mapear errores comunes del backend
           if (key === 'username') {
-            backendErrors.username = 'Usuario ya registrado';
-            errorMessages.push('El nombre de usuario ya existe');
+            if (errorText.toLowerCase().includes('already') || errorText.toLowerCase().includes('existe')) {
+              backendErrors.username = 'Este usuario ya está registrado';
+              errorMessages.push('El nombre de usuario ya existe');
+            } else {
+              backendErrors.username = errorText;
+              errorMessages.push(errorText);
+            }
           } else if (key === 'email') {
-            backendErrors.email = 'Email ya registrado';
-            errorMessages.push('El email ya está en uso');
+            if (errorText.toLowerCase().includes('already') || errorText.toLowerCase().includes('existe')) {
+              backendErrors.email = 'Este email ya está registrado';
+              errorMessages.push('El email ya está en uso');
+            } else {
+              backendErrors.email = errorText;
+              errorMessages.push(errorText);
+            }
+          } else if (key === 'password') {
+            backendErrors.password = errorText;
+            errorMessages.push(`Contraseña: ${errorText}`);
           } else {
             backendErrors[key] = errorText;
             errorMessages.push(errorText);
@@ -124,17 +222,30 @@ const Register = () => {
         setFieldErrors(backendErrors);
         setError(errorMessages.join('. '));
       } else {
-        setError(result.error || 'Error al registrar');
+        setError(result.error || 'Error al registrar. Intenta nuevamente.');
       }
     }
     
     setLoading(false);
   };
 
+  const getPasswordStrengthColor = () => {
+    if (passwordStrength.score <= 1) return '#e53e3e';
+    if (passwordStrength.score <= 3) return '#ed8936';
+    if (passwordStrength.score <= 4) return '#ecc94b';
+    return '#38a169';
+  };
+
+  const getPasswordStrengthText = () => {
+    if (passwordStrength.score <= 1) return 'Muy débil';
+    if (passwordStrength.score <= 3) return 'Débil';
+    if (passwordStrength.score <= 4) return 'Buena';
+    return 'Fuerte';
+  };
+
   return (
     <div className="register-container">
       <div className="register-box">
-        {/* Logo Section */}
         <div className="login-logo-image">
           <img 
             src="/logo.svg"
@@ -143,7 +254,30 @@ const Register = () => {
           />
         </div>
 
-        {error && <div className="register-error">{error}</div>}
+        {/* Mostrar error general solo si no hay errores de campos específicos */}
+      {error && Object.keys(fieldErrors).length === 0 && (
+        <div className="register-error">
+          <span className="register-error-icon">⚠️</span>
+          {error}
+        </div>
+      )}
+      
+      {/* Mostrar resumen de errores si hay múltiples */}
+      {Object.keys(fieldErrors).length > 0 && (
+        <div className="register-error-list">
+          <div className="register-error-header">
+            <span className="register-error-icon">⚠️</span>
+            <strong>Por favor corrige los siguientes errores:</strong>
+          </div>
+          <ul className="register-error-items">
+            {Object.entries(fieldErrors).map(([field, message]) => (
+              <li key={field}>
+                <strong>{getFieldLabel(field)}:</strong> {message}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
         
         <form onSubmit={handleSubmit} className="register-form">
           {/* Selector de Rol */}
@@ -250,9 +384,12 @@ const Register = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="register-input"
+              className={`register-input ${fieldErrors.phone ? 'error' : ''}`}
               placeholder="Teléfono (opcional)"
             />
+            {fieldErrors.phone && (
+              <span className="register-field-error">{fieldErrors.phone}</span>
+            )}
           </div>
 
           <div className="register-row">
@@ -264,8 +401,32 @@ const Register = () => {
                 onChange={handleChange}
                 required
                 className={`register-input ${fieldErrors.password ? 'error' : ''}`}
-                placeholder="Contraseña (mín. 8)"
+                placeholder="Contraseña"
               />
+              {formData.password && (
+                <div className="password-strength-indicator">
+                  <div 
+                    className="password-strength-bar"
+                    style={{
+                      width: `${(passwordStrength.score / 5) * 100}%`,
+                      backgroundColor: getPasswordStrengthColor()
+                    }}
+                  ></div>
+                  <span 
+                    className="password-strength-text"
+                    style={{ color: getPasswordStrengthColor() }}
+                  >
+                    {getPasswordStrengthText()}
+                  </span>
+                </div>
+              )}
+              {passwordStrength.feedback.length > 0 && formData.password && (
+                <div className="password-requirements">
+                  {passwordStrength.feedback.map((req, idx) => (
+                    <span key={idx} className="password-requirement">• {req}</span>
+                  ))}
+                </div>
+              )}
               {fieldErrors.password && (
                 <span className="register-field-error">{fieldErrors.password}</span>
               )}
