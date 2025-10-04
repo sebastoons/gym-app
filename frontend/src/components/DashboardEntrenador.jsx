@@ -155,17 +155,27 @@ const DashboardEntrenador = () => {
           margin: '0 auto'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* LOGO */}
             <div style={{
               width: '50px',
               height: '50px',
-              background: 'linear-gradient(135deg, #38a169, #48bb78)',
+              background: 'white',
               borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '1.5rem'
+              padding: '5px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
             }}>
-              💪
+              <img 
+                src="/logo.svg" 
+                alt="Logo Gimnasio"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
+              />
             </div>
             <h1 style={{ color: '#2d3748', fontSize: '1.75rem', margin: 0 }}>
               Panel de Entrenador
