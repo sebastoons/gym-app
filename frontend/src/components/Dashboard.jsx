@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import DashboardCliente from './DashboardCliente';
-import DashboardEntrenador from './DashboardEntrenador';
-import DashboardAdmin from './DashboardAdmin';
+import DashboardCliente from './dashboard/cliente/DashboardCliente.jsx';
+import DashboardEntrenador from './dashboard/entrenador/DashboardEntrenador.jsx';
+import DashboardAdmin from './dashboard/admin/DashboardAdmin.jsx';
 
 const Dashboard = () => {
   const { user } = useAuth();

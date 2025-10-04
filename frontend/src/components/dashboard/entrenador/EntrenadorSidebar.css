@@ -1,0 +1,87 @@
+/* frontend/src/styles/dashboard/entrenador/EntrenadorSidebar.css */
+
+.entrenador-sidebar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 2px solid #38a169;
+}
+
+.entrenador-sidebar-title {
+  color: #2d3748;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.entrenador-pago-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.entrenador-pago-monto {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #38a169;
+  margin: 0.5rem 0;
+}
+
+.entrenador-pago-fecha {
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.entrenador-pago-fecha strong {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+.entrenador-pago-nota {
+  font-size: 0.8rem;
+  color: #718096;
+  font-style: italic;
+  padding: 0.5rem;
+  background: #edf2f7;
+  border-radius: 6px;
+}
+
+/* Animación */
+.entrenador-sidebar {
+  animation: fadeIn 0.6s ease 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .entrenador-sidebar {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .entrenador-sidebar {
+    padding: 1.25rem;
+  }
+
+  .entrenador-pago-monto {
+    font-size: 2rem;
+  }
+}

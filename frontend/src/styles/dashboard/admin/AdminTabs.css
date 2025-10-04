@@ -1,227 +1,19 @@
-/* frontend/src/styles/components/DashboardAdmin.css */
+/* frontend/src/styles/dashboard/admin/AdminTabs.css */
+/* Estilos compartidos para todos los tabs del admin */
 
-/* ========== CONTAINER Y LAYOUT ========== */
-.dashboard-admin-container {
-  min-height: 100vh;
-  background: #f8f9fa;
+/* ========== OVERVIEW TAB ========== */
+.overview-tab {
+  animation: fadeIn 0.5s ease;
 }
 
-/* ========== HEADER ========== */
-.dashboard-admin-header {
-  /* Los estilos inline en el JSX tienen prioridad */
-}
-
-.dashboard-admin-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.admin-logo {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
-}
-
-.header-title h1 {
-  color: white;
-  font-size: 1.75rem;
-  margin: 0;
-}
-
-.header-title p {
-  color: #a0aec0;
-  font-size: 0.85rem;
-  margin: 0.25rem 0 0 0;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-name {
-  font-weight: 600;
-  color: white;
-}
-
-.admin-badge {
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-  color: white;
-  padding: 0.35rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
-}
-
-.btn-logout {
-  background: #e53e3e;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-logout:hover {
-  background: #c53030;
-  transform: translateY(-2px);
-}
-
-/* ========== NAVIGATION TABS ========== */
-.admin-nav {
-  /* Los estilos inline en el JSX tienen prioridad */
-}
-
-.admin-nav-content {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.nav-tab {
-  background: transparent;
-  border: none;
-  padding: 1rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #718096;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.nav-tab:hover {
-  color: #e53e3e;
-}
-
-.nav-tab.active {
-  color: #e53e3e;
-  border-bottom-color: #e53e3e;
-}
-
-.nav-icon {
-  margin-right: 0.5rem;
-}
-
-/* ========== MAIN CONTENT ========== */
-.dashboard-admin-main {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.admin-section {
-  animation: fadeIn 0.6s ease;
-}
-
-.admin-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 2rem;
-}
-
-.admin-card h4 {
-  margin: 0 0 1rem 0;
-  color: #2d3748;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.section-header h3 {
-  color: #2d3748;
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-/* ========== OVERVIEW - KPIs ========== */
-.admin-overview {
-  animation: fadeIn 0.6s ease;
-}
-
-.admin-kpis {
+.overview-kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.kpi-card {
-  color: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.kpi-activos {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.kpi-deudores {
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-}
-
-.kpi-utilidad {
-  background: linear-gradient(135deg, #38a169, #48bb78);
-}
-
-.kpi-asistencia {
-  background: linear-gradient(135deg, #ed8936, #f6ad55);
-}
-
-.kpi-label {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.kpi-value {
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-.kpi-meta {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  opacity: 0.9;
-}
-
-/* ========== ALERTAS CRÍTICAS ========== */
-.admin-alertas-criticas {
+.overview-alertas {
   background: #fff5f5;
   border: 2px solid #fc8181;
   border-radius: 12px;
@@ -229,7 +21,7 @@
   margin-bottom: 2rem;
 }
 
-.admin-alertas-criticas h3 {
+.overview-alertas h3 {
   color: #c53030;
   margin: 0 0 1rem 0;
   display: flex;
@@ -258,9 +50,7 @@
   font-weight: 700;
 }
 
-.btn-alerta-deudores {
-  background: #e53e3e;
-  color: white;
+.btn-alerta {
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -268,6 +58,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.btn-alerta-deudores {
+  background: #e53e3e;
+  color: white;
 }
 
 .btn-alerta-deudores:hover {
@@ -277,25 +72,16 @@
 .btn-alerta-membresias {
   background: #ed8936;
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .btn-alerta-membresias:hover {
   background: #dd6b20;
 }
 
-/* ========== GRÁFICOS ========== */
-.admin-graficos {
+.overview-graficos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
 }
 
 .grafico-card {
@@ -310,7 +96,6 @@
   color: #2d3748;
 }
 
-/* Distribución de Membresías */
 .membresias-distribucion {
   display: flex;
   flex-direction: column;
@@ -349,7 +134,6 @@
   transition: width 0.5s ease;
 }
 
-/* Estado Financiero */
 .estado-financiero {
   display: flex;
   flex-direction: column;
@@ -410,7 +194,11 @@
   color: #667eea;
 }
 
-/* ========== CLIENTES ========== */
+/* ========== CLIENTES TAB ========== */
+.clientes-tab {
+  animation: fadeIn 0.5s ease;
+}
+
 .clientes-resumen {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -480,45 +268,13 @@
   font-weight: 600;
 }
 
-/* ========== TABLAS ========== */
-.table-responsive {
-  overflow-x: auto;
+.clientes-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.admin-table thead {
-  background: #f7fafc;
-}
-
-.admin-table th {
-  padding: 1rem;
-  text-align: left;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #4a5568;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-.admin-table td {
-  padding: 1rem;
-  border-bottom: 1px solid #e2e8f0;
-  color: #2d3748;
-  font-size: 0.9rem;
-}
-
-.admin-table tbody tr {
-  transition: all 0.2s ease;
-}
-
-.admin-table tbody tr:hover {
-  background: #f7fafc;
-}
-
-/* Estilos específicos de tabla */
 .deuda-valor {
   color: #e53e3e;
   font-weight: 700;
@@ -547,7 +303,11 @@
   font-size: 0.9rem;
 }
 
-/* ========== ENTRENADORES ========== */
+/* ========== ENTRENADORES TAB ========== */
+.entrenadores-tab {
+  animation: fadeIn 0.5s ease;
+}
+
 .entrenadores-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -590,6 +350,13 @@
   color: #4a5568;
 }
 
+.entrenadores-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 .entrenador-info {
   display: flex;
   flex-direction: column;
@@ -625,6 +392,7 @@
 .sueldo-valor {
   color: #38a169;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .calificacion-valor {
@@ -633,7 +401,11 @@
   font-size: 1rem;
 }
 
-/* ========== IMPLEMENTACIONES ========== */
+/* ========== IMPLEMENTACIONES TAB ========== */
+.implementaciones-tab {
+  animation: fadeIn 0.5s ease;
+}
+
 .badge-estado {
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -661,7 +433,11 @@
   color: #c53030;
 }
 
-/* ========== FACTURACIÓN ========== */
+/* ========== FACTURACIÓN TAB ========== */
+.facturacion-tab {
+  animation: fadeIn 0.5s ease;
+}
+
 .facturacion-resumen {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -712,6 +488,18 @@
   gap: 2rem;
 }
 
+.desglose-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.desglose-section h3 {
+  margin: 0 0 1rem 0;
+  color: #2d3748;
+}
+
 .desglose-lista {
   display: flex;
   flex-direction: column;
@@ -750,6 +538,59 @@
 
 .desglose-egreso .desglose-monto {
   color: #e53e3e;
+}
+
+/* ========== TABLAS COMPARTIDAS ========== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead {
+  background: #f7fafc;
+}
+
+.admin-table th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4a5568;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background: #f7fafc;
 }
 
 /* ========== BOTONES ========== */
@@ -872,97 +713,38 @@
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1200px) {
-  .admin-kpis {
+  .overview-kpis {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .facturacion-desglose {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .dashboard-admin-header {
-    padding: 1rem;
-  }
-  
-  .dashboard-admin-header-content {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-  
-  .header-left {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .dashboard-admin-main {
-    padding: 1rem;
-  }
-  
-  .admin-nav-content {
-    padding: 0 1rem;
-    overflow-x: auto;
-  }
-  
-  .nav-tab {
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    white-space: nowrap;
-  }
-  
-  .admin-kpis {
-    grid-template-columns: 1fr;
-  }
-  
-  .section-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-  
-  .admin-graficos {
-    grid-template-columns: 1fr;
-  }
-  
-  .clientes-resumen {
-    grid-template-columns: 1fr;
-  }
-  
-  .entrenadores-stats {
-    grid-template-columns: 1fr;
-  }
-  
+  .overview-kpis,
+  .clientes-resumen,
+  .entrenadores-stats,
   .facturacion-resumen {
     grid-template-columns: 1fr;
   }
-  
+
+  .overview-graficos {
+    grid-template-columns: 1fr;
+  }
+
   .admin-table {
     font-size: 0.8rem;
   }
-  
+
   .admin-table th,
   .admin-table td {
     padding: 0.75rem 0.5rem;
   }
-  
+
   .alerta-item {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-title h1 {
-    font-size: 1.5rem;
-  }
-  
-  .kpi-value {
-    font-size: 2rem;
-  }
-  
-  .facturacion-valor {
-    font-size: 2rem;
   }
 }

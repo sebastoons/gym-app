@@ -1,0 +1,81 @@
+/* frontend/src/styles/dashboard/cliente/ClaseDiaCard.css */
+
+.clase-dia-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.clase-dia-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.clase-dia-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.clase-dia-titulo {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.clase-dia-fecha {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.clase-dia-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.clase-dia-no-clases {
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+  padding: 1rem;
+}
+
+/* Animación al cargar */
+.clase-dia-card {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .clase-dia-card {
+    margin-bottom: 1rem;
+  }
+
+  .clase-dia-header {
+    padding: 0.75rem;
+  }
+
+  .clase-dia-titulo {
+    font-size: 1rem;
+  }
+
+  .clase-dia-content {
+    padding: 0.75rem;
+  }
+}

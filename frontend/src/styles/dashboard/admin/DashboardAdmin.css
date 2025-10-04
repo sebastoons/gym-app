@@ -1,0 +1,28 @@
+/* frontend/src/styles/dashboard/admin/DashboardAdmin.css */
+
+.dashboard-admin {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.dashboard-admin-main {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.dashboard-admin-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-admin-main {
+    padding: 1rem;
+  }
+}

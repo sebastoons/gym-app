@@ -1,0 +1,158 @@
+/* frontend/src/styles/dashboard/cliente/ClaseItem.css */
+
+.clase-item {
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.clase-item:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.clase-item.reservada {
+  border-color: #48bb78;
+  background: #f0fff4;
+}
+
+.clase-item.reservada:hover {
+  border-color: #38a169;
+}
+
+.clase-item-container {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.clase-item-hora {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 0.9rem;
+  min-width: 95px;
+  flex-shrink: 0;
+}
+
+.clase-item-detalles {
+  flex: 1;
+}
+
+.clase-item-nombre {
+  color: #2d3748;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.clase-item-entrenador {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 0.15rem;
+}
+
+.clase-item-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.clase-item-cupos {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.clase-item-calificacion {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.clase-item-badge-finalizada {
+  font-size: 0.7rem;
+  color: #38a169;
+  font-weight: 600;
+  background: #c6f6d5;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.clase-item-btn-calificar {
+  background: transparent;
+  border: 1px solid #667eea;
+  color: #667eea;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.clase-item-btn-calificar:hover {
+  background: #667eea;
+  color: white;
+}
+
+.clase-item-actions {
+  margin-top: 0.5rem;
+}
+
+.clase-item-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.clase-item-btn-reservar {
+  background: #667eea;
+  color: white;
+}
+
+.clase-item-btn-reservar:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.clase-item-btn-cancelar {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.clase-item-btn-cancelar:hover {
+  background: #fc8181;
+  color: white;
+}
+
+.clase-item-btn-llena {
+  background: #e2e8f0;
+  color: #718096;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .clase-item-hora {
+    min-width: 80px;
+    font-size: 0.85rem;
+  }
+
+  .clase-item-nombre {
+    font-size: 0.9rem;
+  }
+
+  .clase-item-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}

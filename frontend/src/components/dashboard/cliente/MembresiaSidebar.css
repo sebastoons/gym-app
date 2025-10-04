@@ -1,0 +1,123 @@
+/* frontend/src/styles/dashboard/cliente/MembresiaSidebar.css */
+
+.membresia-sidebar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 2px solid #667eea;
+}
+
+.membresia-sidebar-title {
+  color: #2d3748;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.membresia-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.membresia-badge-tipo {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.membresia-badge-estado {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.membresia-badge-estado.activa {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.membresia-badge-estado.inactiva {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.membresia-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 8px;
+}
+
+.membresia-detalle-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.membresia-detalle-label {
+  color: #718096;
+}
+
+.membresia-detalle-valor {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.membresia-detalle-row.highlight {
+  background: #e6fffa;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.membresia-detalle-row.highlight .membresia-detalle-valor {
+  color: #38a169;
+  font-size: 1.1rem;
+}
+
+/* Animación */
+.membresia-sidebar {
+  animation: fadeIn 0.6s ease 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .membresia-sidebar {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .membresia-sidebar {
+    padding: 1.25rem;
+  }
+
+  .membresia-info-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+}
