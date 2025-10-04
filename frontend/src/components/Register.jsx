@@ -3,6 +3,20 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/Register.css';
 
+const getFieldLabel = (field) => {
+  const labels = {
+    first_name: 'Nombre',
+    last_name: 'Apellido',
+    username: 'Usuario',
+    email: 'Email',
+    phone: 'Teléfono',
+    password: 'Contraseña',
+    password_confirm: 'Confirmación de contraseña',
+    role: 'Rol'
+  };
+  return labels[field] || field;
+};
+
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -14,6 +28,7 @@ const Register = () => {
     phone: '',
     role: 'cliente'
   });
+  
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
   const [loading, setLoading] = useState(false);

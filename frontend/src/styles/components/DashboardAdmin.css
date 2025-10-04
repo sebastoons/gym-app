@@ -8,14 +8,90 @@
 
 /* ========== HEADER ========== */
 .dashboard-admin-header {
-  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-  border-bottom: 3px solid #e53e3e;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 90px;
-  z-index: 99;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Los estilos inline en el JSX tienen prioridad */
+}
+
+.dashboard-admin-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.admin-logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+}
+
+.header-title h1 {
+  color: white;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.header-title p {
+  color: #a0aec0;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: white;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+}
+
+.btn-logout {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: #c53030;
+  transform: translateY(-2px);
+}
+
+/* ========== NAVIGATION TABS ========== */
+.admin-nav {
+  /* Los estilos inline en el JSX tienen prioridad */
 }
 
 .admin-nav-content {
@@ -81,7 +157,7 @@
 .section-header {
   display: flex;
   justify-content: space-between;
-  alignItems: center;
+  align-items: center;
   margin-bottom: 2rem;
 }
 
@@ -170,6 +246,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .alerta-texto {
@@ -710,6 +788,7 @@
 .action-buttons {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .btn-recordatorio {
@@ -867,6 +946,11 @@
   .admin-table td {
     padding: 0.75rem 0.5rem;
   }
+  
+  .alerta-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
@@ -881,91 +965,4 @@
   .facturacion-valor {
     font-size: 2rem;
   }
-}: sticky;
-  top: 0;
-  z-index: 100;
 }
-
-.dashboard-admin-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.admin-logo {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
-}
-
-.header-title h1 {
-  color: white;
-  font-size: 1.75rem;
-  margin: 0;
-}
-
-.header-title p {
-  color: #a0aec0;
-  font-size: 0.85rem;
-  margin: 0.25rem 0 0 0;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-name {
-  font-weight: 600;
-  color: white;
-}
-
-.admin-badge {
-  background: linear-gradient(135deg, #e53e3e, #fc8181);
-  color: white;
-  padding: 0.35rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
-}
-
-.btn-logout {
-  background: #e53e3e;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-logout:hover {
-  background: #c53030;
-  transform: translateY(-2px);
-}
-
-/* ========== NAVIGATION TABS ========== */
-.admin-nav {
-  background: white;
-  border-bottom: 2px solid #e2e8f0;
-  position

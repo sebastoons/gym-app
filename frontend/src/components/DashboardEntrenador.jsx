@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
-const DashboardEntrenadorMejorado = () => {
+const DashboardEntrenador = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [selectedClase, setSelectedClase] = useState(null);
 
-  const user = {
-    first_name: 'Carlos',
-    last_name: 'Martínez'
-  };
-
-  const logout = () => {
-    console.log('Cerrando sesión...');
-  };
+  // CORRECCIÓN: Usar el usuario real del contexto
+  const { user, logout } = useAuth();
 
   const estadisticas = {
     clasesTotalesHoy: 3,
@@ -123,6 +118,23 @@ const DashboardEntrenadorMejorado = () => {
     };
   });
 
+  // CORRECCIÓN: Mostrar loading mientras no hay usuario
+  if (!user) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh',
+        flexDirection: 'column',
+        gap: '1rem'
+      }}>
+        <div className="spinner"></div>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: '#f8f9fa' }}>
       {/* Header */}
@@ -161,6 +173,7 @@ const DashboardEntrenadorMejorado = () => {
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* CORRECCIÓN: Mostrar el nombre real del usuario autenticado */}
             <span style={{ fontWeight: '600', color: '#2d3748' }}>
               {user.first_name} {user.last_name}
             </span>
@@ -174,6 +187,7 @@ const DashboardEntrenadorMejorado = () => {
             }}>
               Entrenador
             </span>
+            {/* CORRECCIÓN: Usar la función logout del contexto */}
             <button onClick={logout} style={{
               background: '#e53e3e',
               color: 'white',
@@ -198,7 +212,7 @@ const DashboardEntrenadorMejorado = () => {
         gridTemplateRows: 'auto 1fr',
         gap: '2rem'
       }}>
-        {/* Bienvenida */}
+        {/* Bienvenida - CORRECCIÓN: Usar el nombre real del usuario */}
         <section style={{
           gridColumn: '1 / -1',
           background: 'linear-gradient(135deg, #38a169 0%, #48bb78 100%)',
@@ -474,8 +488,7 @@ const DashboardEntrenadorMejorado = () => {
             borderRadius: '16px',
             padding: '1.5rem',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-            border: '2px solid #38a169',
-            background: 'linear-gradient(to bottom, white, #f0fff4)'
+            border: '2px solid #38a169'
           }}>
             <h3 style={{
               color: '#2d3748',
@@ -622,4 +635,4 @@ const DashboardEntrenadorMejorado = () => {
   );
 };
 
-export default DashboardEntrenadorMejorado;
+export default DashboardEntrenador;

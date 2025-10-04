@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
-const DashboardClienteMejorado = () => {
+const DashboardCliente = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [calificaciones, setCalificaciones] = useState({});
   const [showCalificarModal, setShowCalificarModal] = useState(null);
 
-  // Usuario mock
-  const user = {
-    first_name: 'Juan',
-    last_name: 'Pérez'
-  };
+  // CORRECCIÓN: Usar el usuario real del contexto
+  const { user, logout } = useAuth();
 
-  const logout = () => {
-    console.log('Cerrando sesión...');
-  };
-
-  // Datos mock
+  // Datos mock de membresía (estos vendrían del backend en producción)
   const membresiaData = {
     tipo: 'Premium',
     estado: 'Activa',
@@ -259,6 +253,23 @@ const DashboardClienteMejorado = () => {
     );
   };
 
+  // CORRECCIÓN: Mostrar loading mientras no hay usuario
+  if (!user) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh',
+        flexDirection: 'column',
+        gap: '1rem'
+      }}>
+        <div className="spinner"></div>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: '#f8f9fa' }}>
       {/* Header */}
@@ -297,6 +308,7 @@ const DashboardClienteMejorado = () => {
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* CORRECCIÓN: Mostrar el nombre real del usuario autenticado */}
             <span style={{ fontWeight: '600', color: '#2d3748' }}>
               {user.first_name} {user.last_name}
             </span>
@@ -310,6 +322,7 @@ const DashboardClienteMejorado = () => {
             }}>
               Cliente
             </span>
+            {/* CORRECCIÓN: Usar la función logout del contexto */}
             <button onClick={logout} style={{
               background: '#e53e3e',
               color: 'white',
@@ -334,7 +347,7 @@ const DashboardClienteMejorado = () => {
         gridTemplateRows: 'auto 1fr',
         gap: '2rem'
       }}>
-        {/* Bienvenida */}
+        {/* Bienvenida - CORRECCIÓN: Usar el nombre real del usuario */}
         <section style={{
           gridColumn: '1 / -1',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -631,4 +644,4 @@ const DashboardClienteMejorado = () => {
   );
 };
 
-export default DashboardClienteMejorado;
+export default DashboardCliente;

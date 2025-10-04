@@ -6,6 +6,63 @@ const DashboardAdmin = () => {
   const { user, logout } = useAuth();
   const [selectedTab, setSelectedTab] = useState('overview');
 
+  // Validar que el usuario exista
+  if (!user) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh',
+        flexDirection: 'column',
+        gap: '1rem'
+      }}>
+        <div className="spinner"></div>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  // Validar que sea administrador
+  const userRole = user.role?.toLowerCase();
+  if (userRole !== 'administrador' && userRole !== 'admin') {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh',
+        flexDirection: 'column',
+        gap: '1rem',
+        padding: '2rem'
+      }}>
+        <h2>⚠️ Acceso Denegado</h2>
+        <p>No tienes permisos de administrador.</p>
+        <button onClick={logout} style={{
+          background: '#e53e3e',
+          color: 'white',
+          border: 'none',
+          padding: '0.75rem 1.5rem',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          fontWeight: '600'
+        }}>
+          Volver al inicio
+        </button>
+      </div>
+    );
+  }
+
+  // FUNCIÓN PARA FORMATEAR MONTOS EN PESOS CHILENOS - SIN ABREVIACIONES
+  const formatCLP = (amount) => {
+    return new Intl.NumberFormat('es-CL', {
+      style: 'currency',
+      currency: 'CLP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+
   // Datos expandidos
   const estadisticas = {
     clientesActivos: 156,
@@ -129,13 +186,13 @@ const DashboardAdmin = () => {
           <div className="kpi-label">DEUDORES</div>
           <div className="kpi-value">{estadisticas.clientesDeudores}</div>
           <div className="kpi-meta">
-            ${(clientesDeudores.reduce((sum, c) => sum + c.deuda, 0) / 1000).toFixed(0)}k en deuda
+            {formatCLP(clientesDeudores.reduce((sum, c) => sum + c.deuda, 0))} en deuda
           </div>
         </div>
 
         <div className="kpi-card kpi-utilidad">
           <div className="kpi-label">UTILIDAD DEL MES</div>
-          <div className="kpi-value">${(estadisticas.utilidadMes / 1000000).toFixed(1)}M</div>
+          <div className="kpi-value">{formatCLP(estadisticas.utilidadMes)}</div>
           <div className="kpi-meta">+18% vs mes anterior</div>
         </div>
 
@@ -201,19 +258,19 @@ const DashboardAdmin = () => {
             <div className="financiero-item financiero-ingresos">
               <div className="financiero-label">INGRESOS</div>
               <div className="financiero-valor">
-                ${(facturacion.mesActual.ingresos / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.mesActual.ingresos)}
               </div>
             </div>
             <div className="financiero-item financiero-egresos">
               <div className="financiero-label">EGRESOS</div>
               <div className="financiero-valor">
-                ${(facturacion.mesActual.egresos / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.mesActual.egresos)}
               </div>
             </div>
             <div className="financiero-item financiero-utilidad">
               <div className="financiero-label">UTILIDAD</div>
               <div className="financiero-valor">
-                ${(facturacion.mesActual.utilidad / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.mesActual.utilidad)}
               </div>
             </div>
           </div>
@@ -277,7 +334,7 @@ const DashboardAdmin = () => {
                 <tr key={cliente.id}>
                   <td><strong>{cliente.nombre}</strong></td>
                   <td>
-                    <span className="deuda-valor">${cliente.deuda.toLocaleString()}</span>
+                    <span className="deuda-valor">{formatCLP(cliente.deuda)}</span>
                   </td>
                   <td>
                     <span className={`badge-meses ${cliente.mesesAtrasados >= 3 ? 'badge-critico' : 'badge-alerta'}`}>
@@ -317,7 +374,7 @@ const DashboardAdmin = () => {
         <div className="stat-card">
           <div className="stat-label">NÓMINA MENSUAL</div>
           <div className="stat-valor stat-morado">
-            ${(entrenadores.reduce((sum, e) => sum + e.sueldo, 0) / 1000000).toFixed(2)}M
+            {formatCLP(entrenadores.reduce((sum, e) => sum + e.sueldo, 0))}
           </div>
         </div>
 
@@ -366,7 +423,7 @@ const DashboardAdmin = () => {
                       {entrenador.contrato}
                     </span>
                   </td>
-                  <td><strong className="sueldo-valor">${entrenador.sueldo.toLocaleString()}</strong></td>
+                  <td><strong className="sueldo-valor">{formatCLP(entrenador.sueldo)}</strong></td>
                   <td>{entrenador.clases} clases</td>
                   <td><span className="calificacion-valor">⭐ {entrenador.calificacion}</span></td>
                   <td>
@@ -437,7 +494,7 @@ const DashboardAdmin = () => {
         <div className="facturacion-card facturacion-ingresos">
           <div className="facturacion-label">💵 INGRESOS TOTALES</div>
           <div className="facturacion-valor">
-            ${(facturacion.mesActual.ingresos / 1000000).toFixed(2)}M
+            {formatCLP(facturacion.mesActual.ingresos)}
           </div>
           <div className="facturacion-meta">Diciembre 2024</div>
         </div>
@@ -445,7 +502,7 @@ const DashboardAdmin = () => {
         <div className="facturacion-card facturacion-egresos">
           <div className="facturacion-label">📤 EGRESOS TOTALES</div>
           <div className="facturacion-valor">
-            ${(facturacion.mesActual.egresos / 1000000).toFixed(2)}M
+            {formatCLP(facturacion.mesActual.egresos)}
           </div>
           <div className="facturacion-meta">Diciembre 2024</div>
         </div>
@@ -453,7 +510,7 @@ const DashboardAdmin = () => {
         <div className="facturacion-card facturacion-utilidad-card">
           <div className="facturacion-label">💎 UTILIDAD NETA</div>
           <div className="facturacion-valor">
-            ${(facturacion.mesActual.utilidad / 1000000).toFixed(2)}M
+            {formatCLP(facturacion.mesActual.utilidad)}
           </div>
           <div className="facturacion-meta">
             Margen: {((facturacion.mesActual.utilidad / facturacion.mesActual.ingresos) * 100).toFixed(0)}%
@@ -470,19 +527,19 @@ const DashboardAdmin = () => {
             <div className="desglose-item desglose-ingreso">
               <span className="desglose-concepto">Membresías</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.ingresosMembesias / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.ingresosMembesias)}
               </span>
             </div>
             <div className="desglose-item desglose-ingreso">
               <span className="desglose-concepto">Clases Extra</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.ingresosClasesExtra / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.ingresosClasesExtra)}
               </span>
             </div>
             <div className="desglose-item desglose-ingreso">
               <span className="desglose-concepto">Productos</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.ingresosProductos / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.ingresosProductos)}
               </span>
             </div>
           </div>
@@ -495,31 +552,31 @@ const DashboardAdmin = () => {
             <div className="desglose-item desglose-egreso">
               <span className="desglose-concepto">Sueldos</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.sueldos / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.sueldos)}
               </span>
             </div>
             <div className="desglose-item desglose-egreso">
               <span className="desglose-concepto">Arriendo</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.arriendo / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.arriendo)}
               </span>
             </div>
             <div className="desglose-item desglose-egreso">
               <span className="desglose-concepto">Servicios</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.servicios / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.servicios)}
               </span>
             </div>
             <div className="desglose-item desglose-egreso">
               <span className="desglose-concepto">Mantenimiento</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.mantenimiento / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.mantenimiento)}
               </span>
             </div>
             <div className="desglose-item desglose-egreso">
               <span className="desglose-concepto">Otros</span>
               <span className="desglose-monto">
-                ${(facturacion.desglose.otros / 1000000).toFixed(2)}M
+                {formatCLP(facturacion.desglose.otros)}
               </span>
             </div>
           </div>
@@ -530,11 +587,43 @@ const DashboardAdmin = () => {
 
   return (
     <div className="dashboard-admin-container">
-      {/* Header con logo */}
-      <header className="dashboard-admin-header">
+      {/* Header con logo - FIJO ARRIBA */}
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: '100%',
+        zIndex: 1000,
+        background: 'linear-gradient(135deg, #1a1a1a, #2d2d2d)',
+        borderBottom: '3px solid #e53e3e',
+        padding: '1rem 2rem',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+      }}>
         <div className="dashboard-admin-header-content">
           <div className="header-left">
-            <div className="admin-logo">⚙️</div>
+            {/* LOGO DEL GIMNASIO */}
+            <div style={{
+              width: '60px',
+              height: '60px',
+              background: 'white',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '5px',
+              boxShadow: '0 4px 12px rgba(255, 255, 255, 0.2)'
+            }}>
+              <img 
+                src="/logo.svg" 
+                alt="Logo Gimnasio"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
             <div className="header-title">
               <h1>Panel de Administración</h1>
               <p>Control total del gimnasio</p>
@@ -542,15 +631,25 @@ const DashboardAdmin = () => {
           </div>
           
           <div className="header-right">
-            <span className="user-name">{user?.first_name} {user?.last_name}</span>
+            <span className="user-name">{user.first_name} {user.last_name}</span>
             <span className="admin-badge">Administrador</span>
             <button onClick={logout} className="btn-logout">Cerrar Sesión</button>
           </div>
         </div>
       </header>
 
-      {/* Navigation Tabs */}
-      <nav className="admin-nav">
+      {/* Navigation Tabs - FIJAS DEBAJO DEL HEADER */}
+      <nav style={{
+        position: 'fixed',
+        top: '90px',
+        left: 0,
+        right: 0,
+        width: '100%',
+        zIndex: 999,
+        background: 'white',
+        borderBottom: '2px solid #e2e8f0',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+      }}>
         <div className="admin-nav-content">
           {[
             { id: 'overview', icon: '📊', label: 'Resumen' },
@@ -571,13 +670,19 @@ const DashboardAdmin = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="dashboard-admin-main">
-        {selectedTab === 'overview' && renderOverview()}
-        {selectedTab === 'clientes' && renderClientes()}
-        {selectedTab === 'entrenadores' && renderEntrenadores()}
-        {selectedTab === 'implementaciones' && renderImplementaciones()}
-        {selectedTab === 'facturacion' && renderFacturacion()}
+      {/* Main Content - CON PADDING SUPERIOR PARA NO QUEDAR TAPADO */}
+      <main style={{
+        paddingTop: '160px',
+        minHeight: '100vh',
+        background: '#f8f9fa'
+      }}>
+        <div className="dashboard-admin-main">
+          {selectedTab === 'overview' && renderOverview()}
+          {selectedTab === 'clientes' && renderClientes()}
+          {selectedTab === 'entrenadores' && renderEntrenadores()}
+          {selectedTab === 'implementaciones' && renderImplementaciones()}
+          {selectedTab === 'facturacion' && renderFacturacion()}
+        </div>
       </main>
     </div>
   );
