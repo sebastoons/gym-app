@@ -32,8 +32,8 @@
   --header-text-font: 'Quantico', sans-serif;
   
   /* 📏 Tamaños */
-  --header-padding: 1rem 1.5rem;
-  --logo-size: 45px;
+  --header-padding: 5px 15px;
+  --logo-size: 100px;
   --header-title-size: 1.35rem;
   --header-username-size: 0.9rem;
   --role-badge-size: 0.75rem;
@@ -84,19 +84,16 @@
 .dashboard-logo {
   width: var(--logo-size);
   height: var(--logo-size);
-  background: var(--logo-bg);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  border: 2px solid var(--logo-border);
+  padding: 0px;
   transition: all 0.3s ease;
 }
 
 .dashboard-logo:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-logo img {
@@ -263,10 +260,12 @@
 
 .week-navigator-label {
   font-weight: 700;
-  font-size: var(--week-nav-label-size);
+  font-size: 0.9em;
   min-width: 120px;
   text-align: center;
   color: #2d3748;
+  font-family: 'Quantico';
+  text-transform: uppercase;
 }
 
 /* ========== SPINNER ========== */

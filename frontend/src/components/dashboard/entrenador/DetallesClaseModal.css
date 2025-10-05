@@ -1,4 +1,4 @@
-/* frontend/src/styles/dashboard/entrenador/DetallesClaseModal.css */
+/* frontend/src/components/dashboard/entrenador/DetallesClaseModal.css */
 
 .detalles-clase-modal-overlay {
   position: fixed;
@@ -6,23 +6,24 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  padding: 1rem;
 }
 
 .detalles-clase-modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 2rem;
-  max-width: 500px;
-  width: 90%;
-  max-height: 80vh;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease;
 }
 
@@ -39,6 +40,25 @@
   color: #2d3748;
   font-size: 1.5rem;
   margin: 0;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.detalles-clase-badge-completada {
+  background: #c6f6d5;
+  color: #22543d;
+  padding: 0.35rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .detalles-clase-modal-close {
@@ -54,6 +74,7 @@
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .detalles-clase-modal-close:hover {
@@ -65,6 +86,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .detalles-clase-info-row {
@@ -74,15 +96,171 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Quantico', sans-serif;
 }
 
 .detalles-clase-info-row strong:first-child {
   color: #718096;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .detalles-clase-info-row strong:last-child {
   color: #2d3748;
+  font-size: 0.9rem;
+}
+
+/* Filas destacadas para clases completadas */
+.detalles-clase-info-row.highlight-success {
+  background: linear-gradient(145deg, #f0fff4, #c6f6d5);
+  border-left: 4px solid #38a169;
+}
+
+.detalles-clase-info-row.highlight-rating {
+  background: linear-gradient(145deg, #fffaf0, #feebc8);
+  border-left: 4px solid #ed8936;
+}
+
+.calificacion-destacada {
+  color: #dd6b20 !important;
+  font-size: 1.1rem !important;
+  font-family: 'Audiowide', cursive !important;
+}
+
+/* Sección de alumnos */
+.detalles-clase-alumnos-section {
+  margin-top: 0.5rem;
+}
+
+.detalles-clase-toggle-alumnos {
+  width: 100%;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Quantico', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #4a5568;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-toggle-alumnos:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.detalles-clase-alumnos-lista {
+  margin-top: 1rem;
+  background: #f7fafc;
+  border-radius: 10px;
+  padding: 1rem;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+}
+
+.detalles-clase-alumno-item {
+  padding: 0.65rem;
+  background: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid #38a169;
+  font-family: 'Quantico', sans-serif;
+  font-size: 0.85rem;
+  color: #2d3748;
+  transition: all 0.2s ease;
+}
+
+.detalles-clase-alumno-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.detalles-clase-alumno-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Botones de acción */
+.detalles-clase-modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.detalles-clase-modal-actions-single {
+  display: flex;
+  justify-content: center;
+}
+
+.detalles-clase-btn-eliminar {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4);
+}
+
+.detalles-clase-btn-reservar {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-btn-reservar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 161, 105, 0.4);
+}
+
+.detalles-clase-btn-reservar:disabled {
+  background: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.detalles-clase-btn-cerrar {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-btn-cerrar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Animaciones */
@@ -98,7 +276,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -106,13 +284,259 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 250px;
+  }
+}
+
+/* Scrollbar personalizada */
+.detalles-clase-alumnos-lista::-webkit-scrollbar {
+  width: 5px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-track {
+  background: #edf2f7;
+  border-radius: 10px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  border-radius: 10px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2f855a, #38a169);
+}
+
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .detalles-clase-modal-content {
     padding: 1.5rem;
   }
 
   .detalles-clase-modal-title {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalles-clase-modal-content {
+    padding: 1.25rem;
+  }
+
+  .detalles-clase-modal-title {
+    font-size: 1.1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detalles-clase-modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .detalles-clase-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+
+/* Sección de alumnos */
+.detalles-clase-alumnos-section {
+  margin-top: 0.5rem;
+}
+
+.detalles-clase-toggle-alumnos {
+  width: 100%;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Quantico', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #4a5568;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-toggle-alumnos:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.detalles-clase-alumnos-lista {
+  margin-top: 1rem;
+  background: #f7fafc;
+  border-radius: 10px;
+  padding: 1rem;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+}
+
+.detalles-clase-alumno-item {
+  padding: 0.65rem;
+  background: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid #38a169;
+  font-family: 'Quantico', sans-serif;
+  font-size: 0.85rem;
+  color: #2d3748;
+  transition: all 0.2s ease;
+}
+
+.detalles-clase-alumno-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.detalles-clase-alumno-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Botones de acción */
+.detalles-clase-modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.detalles-clase-btn-eliminar {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4);
+}
+
+.detalles-clase-btn-reservar {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.detalles-clase-btn-reservar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 161, 105, 0.4);
+}
+
+.detalles-clase-btn-reservar:disabled {
+  background: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 250px;
+  }
+}
+
+/* Scrollbar personalizada */
+.detalles-clase-alumnos-lista::-webkit-scrollbar {
+  width: 5px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-track {
+  background: #edf2f7;
+  border-radius: 10px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  border-radius: 10px;
+}
+
+.detalles-clase-alumnos-lista::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2f855a, #38a169);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detalles-clase-modal-content {
+    padding: 1.5rem;
+  }
+
+  .detalles-clase-modal-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalles-clase-modal-content {
+    padding: 1.25rem;
+  }
+
+  .detalles-clase-modal-title {
+    font-size: 1.1rem;
+  }
+
+  .detalles-clase-modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .detalles-clase-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

@@ -133,46 +133,72 @@ export const CLASES_BASE_POR_DIA = {
 };
 
 /**
- * Clases del entrenador por día
+ * Clases del entrenador por día con lista de alumnos
  */
 export const CLASES_ENTRENADOR_BASE = {
   'Lunes': [
     { 
       hora: '07:00 - 08:00', 
-      nombre: 'Spinning', 
+      nombre: 'Spinning Matutino', 
       inscritos: 12,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Ana García', 'Pedro López', 'María Silva', 'Juan Pérez', 
+        'Carlos Ruiz', 'Laura Martínez', 'Diego Torres', 'Sofía Ramírez',
+        'Andrés Castro', 'Valentina Flores', 'Roberto Díaz', 'Camila Vargas'
+      ]
     },
     { 
       hora: '18:00 - 19:00', 
       nombre: 'Spinning Avanzado', 
       inscritos: 8,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Fernando Soto', 'Gabriela Morales', 'Ricardo Pinto', 'Daniela Rojas',
+        'Mauricio Vega', 'Patricia Núñez', 'Alejandro Campos', 'Nicole Herrera'
+      ]
     }
   ],
   'Martes': [
     { 
       hora: '19:00 - 20:00', 
-      nombre: 'Spinning', 
+      nombre: 'Spinning Nocturno', 
       inscritos: 10,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Luis Contreras', 'Andrea Guzmán', 'Pablo Medina', 'Francisca Muñoz',
+        'Jorge Salazar', 'Beatriz Ortiz', 'Rodrigo Peña', 'Catalina Bravo',
+        'Sebastián León', 'Antonia Ríos'
+      ]
     }
   ],
   'Miércoles': [
     { 
       hora: '07:00 - 08:00', 
-      nombre: 'Spinning', 
+      nombre: 'Spinning Matutino', 
       inscritos: 15,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Martín Espinoza', 'Javiera Fuentes', 'Cristóbal Parra', 'Isidora Sánchez',
+        'Felipe Araya', 'Constanza Reyes', 'Tomás Navarro', 'Florencia Vera',
+        'Ignacio Molina', 'Josefina Cortés', 'Maximiliano Leiva', 'Emilia Guerrero',
+        'Vicente Tapia', 'Maite Figueroa', 'Matías Cárdenas'
+      ]
     }
   ],
   'Jueves': [],
   'Viernes': [
     { 
       hora: '07:00 - 08:00', 
-      nombre: 'Spinning', 
+      nombre: 'Spinning Matutino', 
       inscritos: 14,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Benjamín Carmona', 'Renata Silva', 'Agustín Rojas', 'Amanda Torres',
+        'Lucas Gómez', 'Isabella Moreno', 'Samuel Ibáñez', 'Antonella Fernández',
+        'Gabriel Vargas', 'Sofía Castillo', 'Nicolás Sepúlveda', 'Valentina Muñoz',
+        'Diego Valdés', 'Martina Jara'
+      ]
     }
   ],
   'Sábado': [
@@ -180,7 +206,11 @@ export const CLASES_ENTRENADOR_BASE = {
       hora: '10:30 - 11:30', 
       nombre: 'Spinning Familiar', 
       inscritos: 6,
-      capacidad: 15
+      capacidad: 15,
+      alumnos: [
+        'Carlos Herrera', 'Ana Campos', 'Pedro Bravo', 
+        'María León', 'Juan Ríos', 'Laura Espinoza'
+      ]
     }
   ],
   'Domingo': []
@@ -230,14 +260,27 @@ export const USER_ROLES = {
 };
 
 /**
- * Genera clases para el entrenador con asistencia si es semana pasada
+ * Genera clases para el entrenador con asistencia y calificaciones si es semana pasada
  */
 export const getClasesEntrenador = (dayName, weekOffset) => {
   const clasesBase = CLASES_ENTRENADOR_BASE[dayName] || [];
   
+  // Si es semana pasada, agregar calificaciones y asistentes
+  if (weekOffset < 0) {
+    return clasesBase.map(clase => ({
+      ...clase,
+      asistentes: clase.inscritos - Math.floor(Math.random() * 3), // Algunos alumnos pueden faltar
+      calificacionClase: (4.5 + Math.random() * 0.5).toFixed(1), // Calificación entre 4.5 y 5.0
+      completada: true
+    }));
+  }
+  
+  // Semana actual o futura, sin calificaciones
   return clasesBase.map(clase => ({
     ...clase,
-    asistentes: weekOffset < 0 ? clase.inscritos - Math.floor(Math.random() * 2) : null
+    asistentes: null,
+    calificacionClase: null,
+    completada: false
   }));
 };
 

@@ -1,4 +1,4 @@
-/* frontend/src/styles/dashboard/entrenador/ClaseEntrenadorItem.css */
+/* frontend/src/components/dashboard/entrenador/ClaseEntrenadorItem.css */
 
 .clase-entrenador-item {
   border: 2px solid #e2e8f0;
@@ -8,11 +8,23 @@
   flex-direction: column;
   gap: 0.75rem;
   transition: all 0.3s ease;
+  background: white;
 }
 
 .clase-entrenador-item:hover {
   border-color: #cbd5e0;
   background: #f7fafc;
+}
+
+/* Clase completada - estilo especial */
+.clase-entrenador-item.completada {
+  border-color: #38a169;
+  background: linear-gradient(145deg, #f0fff4, #ffffff);
+}
+
+.clase-entrenador-item.completada:hover {
+  border-color: #2f855a;
+  box-shadow: 0 2px 8px rgba(56, 161, 105, 0.15);
 }
 
 .clase-entrenador-info {
@@ -26,29 +38,75 @@
   font-size: 0.85rem;
   min-width: 80px;
   flex-shrink: 0;
+  font-family: 'Quantico', sans-serif;
 }
 
 .clase-entrenador-detalles {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.4rem;
   flex: 1;
+}
+
+.clase-entrenador-nombre-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .clase-entrenador-nombre {
   color: #2d3748;
   font-size: 0.95rem;
+  font-family: 'Quantico', sans-serif;
+  font-weight: 700;
+}
+
+.clase-entrenador-badge-completada {
+  background: #c6f6d5;
+  color: #22543d;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .clase-entrenador-inscritos {
   font-size: 0.75rem;
   color: #718096;
+  font-family: 'Quantico', sans-serif;
+}
+
+/* Información de clases completadas */
+.clase-entrenador-info-completada {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e2e8f0;
 }
 
 .clase-entrenador-asistencia {
   font-size: 0.75rem;
   color: #38a169;
   font-weight: 600;
+  font-family: 'Quantico', sans-serif;
+}
+
+.clase-entrenador-calificacion {
+  font-size: 0.75rem;
+  color: #ed8936;
+  font-weight: 600;
+  font-family: 'Quantico', sans-serif;
+}
+
+.clase-entrenador-calificacion strong {
+  color: #dd6b20;
+  font-size: 0.8rem;
 }
 
 .clase-entrenador-actions {
@@ -67,12 +125,24 @@
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
+  font-family: 'Quantico', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .btn-ver-detalles-entrenador:hover {
   background: #2f855a;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(56, 161, 105, 0.3);
+}
+
+/* Botón especial para clases completadas */
+.clase-entrenador-item.completada .btn-ver-detalles-entrenador {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.clase-entrenador-item.completada .btn-ver-detalles-entrenador:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 /* Responsive */
@@ -89,5 +159,9 @@
   .btn-ver-detalles-entrenador {
     font-size: 0.75rem;
     padding: 0.4rem 0.8rem;
+  }
+
+  .clase-entrenador-info-completada {
+    gap: 0.25rem;
   }
 }

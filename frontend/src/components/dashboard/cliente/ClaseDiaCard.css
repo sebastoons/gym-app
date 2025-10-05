@@ -59,7 +59,7 @@
   overflow: hidden;
 }
 
-/* Efecto de brillo animado (opcional) */
+/* Efecto de brillo animado (opcional) 
 .clase-dia-header::before {
   content: '';
   position: absolute;
@@ -75,7 +75,7 @@
   );
   transform: rotate(45deg);
   animation: shine 3s infinite;
-}
+}*/
 
 @keyframes shine {
   0% {

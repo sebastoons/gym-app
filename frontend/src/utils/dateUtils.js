@@ -41,8 +41,10 @@ export const formatDate = (date) => {
  * @returns {string} Fecha formateada
  */
 export const formatDateLocale = (date) => {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  return date.toLocaleDateString('es-CL', options);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
 };
 
 /**
@@ -70,15 +72,22 @@ export const getWeekLabel = (weekOffset) => {
 
 /**
  * Verifica si una clase ya pasó (comparado con fecha y hora actual)
- * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD-MM-YYYY
  * @param {string} hora - Hora en formato HH:MM - HH:MM
  * @returns {boolean} True si la clase ya pasó
  */
 export const esClasePasada = (fecha, hora) => {
+  // Convertir fecha DD-MM-YYYY a YYYY-MM-DD si es necesario
+  let fechaFormateada = fecha;
+  if (fecha.includes('-') && fecha.split('-')[0].length === 2) {
+    const [dia, mes, año] = fecha.split('-');
+    fechaFormateada = `${año}-${mes}-${dia}`;
+  }
+  
   const [horaInicio] = hora.split(' - ');
   const [horaNum, minNum] = horaInicio.split(':');
   
-  const fechaClase = new Date(fecha + 'T' + horaInicio + ':00');
+  const fechaClase = new Date(fechaFormateada + 'T' + horaInicio + ':00');
   const ahora = new Date();
   
   return fechaClase < ahora;
@@ -86,11 +95,18 @@ export const esClasePasada = (fecha, hora) => {
 
 /**
  * Verifica si una clase es de semana pasada
- * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD-MM-YYYY
  * @returns {boolean} True si la clase es de semana pasada
  */
 export const esDeSemanaAnterior = (fecha) => {
-  const fechaClase = new Date(fecha + 'T00:00:00');
+  // Convertir fecha DD-MM-YYYY a YYYY-MM-DD si es necesario
+  let fechaFormateada = fecha;
+  if (fecha.includes('-') && fecha.split('-')[0].length === 2) {
+    const [dia, mes, año] = fecha.split('-');
+    fechaFormateada = `${año}-${mes}-${dia}`;
+  }
+  
+  const fechaClase = new Date(fechaFormateada + 'T00:00:00');
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
   
@@ -99,10 +115,19 @@ export const esDeSemanaAnterior = (fecha) => {
 
 /**
  * Verifica si una clase es reservable (presente o futura, no pasada)
- * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD o DD-MM-YYYY
  * @param {string} hora - Hora en formato HH:MM - HH:MM
  * @returns {boolean} True si la clase es reservable
  */
 export const esClaseReservable = (fecha, hora) => {
   return !esClasePasada(fecha, hora);
+};
+
+/**
+ * Verifica si un weekOffset corresponde a semanas pasadas
+ * @param {number} weekOffset - Offset de semanas
+ * @returns {boolean} True si es semana pasada
+ */
+export const esSemanaAnterior = (weekOffset) => {
+  return weekOffset < 0;
 };

@@ -103,9 +103,10 @@
 }
 
 .membresia-detalle-row.highlight .membresia-detalle-valor {
-  color: #667eea;
-  font-size: 1.15rem;
-  font-family: 'Audiowide', cursive;
+  color: #5a6cbd;
+  font-size: 1.3em;
+  font-family: 'Quantico';
+  font-weight: bold;
 }
 
 /* Botones de acción */

@@ -1,4 +1,4 @@
-/* frontend/src/styles/dashboard/entrenador/EntrenadorSidebar.css */
+/* frontend/src/components/dashboard/entrenador/EntrenadorSidebar.css */
 
 .entrenador-sidebar {
   background: white;
@@ -10,33 +10,40 @@
 
 .entrenador-sidebar-title {
   color: #2d3748;
-  font-size: 1.1rem;
+  font-size: 1.1em;
   margin: 0 0 1rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* Próximo Pago */
 .entrenador-pago-info {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .entrenador-pago-monto {
-  font-size: 2.5rem;
+  font-size: 2em;
   font-weight: 700;
   color: #38a169;
   margin: 0.5rem 0;
+  font-family: 'Audiowide', cursive;
 }
 
 .entrenador-pago-fecha {
   padding: 0.75rem;
-  background: white;
+  background: #f7fafc;
   border-radius: 8px;
   font-size: 0.9rem;
   color: #4a5568;
+  font-family: 'Quantico', sans-serif;
 }
 
 .entrenador-pago-fecha strong {
@@ -51,6 +58,203 @@
   padding: 0.5rem;
   background: #edf2f7;
   border-radius: 6px;
+  font-family: 'Quantico', sans-serif;
+}
+
+/* Botones Toggle */
+.entrenador-historial-toggle,
+.entrenador-contrato-toggle {
+  margin-bottom: 1rem;
+}
+
+.entrenador-btn-toggle-historial,
+.entrenador-btn-toggle-contrato {
+  width: 100%;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  color: #4a5568;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+}
+
+.entrenador-btn-toggle-historial:hover,
+.entrenador-btn-toggle-contrato:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+/* Historial de Pagos */
+.entrenador-historial {
+  background: #f7fafc;
+  border-radius: 10px;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  max-height: 280px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.entrenador-pago-item {
+  padding: 0.7rem;
+  background: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+  border-left: 3px solid #38a169;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.entrenador-pago-item:hover {
+  border-left-color: #2f855a;
+  transform: translateX(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.entrenador-pago-item:last-child {
+  margin-bottom: 0;
+}
+
+.entrenador-pago-item-fecha {
+  font-size: 0.7rem;
+  color: #718096;
+  margin-bottom: 0.3rem;
+  font-family: 'Quantico', sans-serif;
+}
+
+.entrenador-pago-item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entrenador-pago-item-monto {
+  font-weight: bold;
+  color: #2d3748;
+  font-size: 0.95em;
+  font-family: 'Quantico', cursive;
+  text-transform: uppercase;
+}
+
+.entrenador-pago-item-estado {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.entrenador-pago-item-estado.pagado {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.entrenador-pago-item-estado.pendiente {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+/* Información de Contrato */
+.entrenador-contrato-info {
+  background: #f7fafc;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+.entrenador-contrato-row {
+  padding: 0.65rem;
+  background: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-family: 'Quantico', sans-serif;
+}
+
+.entrenador-contrato-row:last-child {
+  margin-bottom: 0;
+}
+
+.entrenador-contrato-label {
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.entrenador-contrato-valor {
+  color: #2d3748;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.entrenador-contrato-valor.indefinido {
+  color: #38a169;
+}
+
+.entrenador-contrato-valor.plazo {
+  color: #ed8936;
+}
+
+.entrenador-contrato-valor.calificacion {
+  color: #ed8936;
+}
+
+/* Días Restantes para contratos a plazo */
+.entrenador-contrato-dias {
+  padding: 0.85rem;
+  background: #ffffff;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.entrenador-contrato-dias.alerta {
+  background: #fef5e7;
+  border: 2px solid #ed8936;
+}
+
+.entrenador-contrato-dias-label {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-bottom: 0.25rem;
+  font-family: 'Quantico', sans-serif;
+}
+
+.entrenador-contrato-dias-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #38a169;
+  font-family: 'Audiowide', cursive;
+}
+
+.entrenador-contrato-dias.alerta .entrenador-contrato-dias-valor {
+  color: #ed8936;
+}
+
+.entrenador-contrato-dias-aviso {
+  font-size: 0.75rem;
+  color: #c05621;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Animación */
@@ -69,10 +273,40 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+/* Scrollbar personalizada para historial */
+.entrenador-historial::-webkit-scrollbar {
+  width: 5px;
+}
+
+.entrenador-historial::-webkit-scrollbar-track {
+  background: #edf2f7;
+  border-radius: 10px;
+}
+
+.entrenador-historial::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #38a169, #48bb78);
+  border-radius: 10px;
+}
+
+.entrenador-historial::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2f855a, #38a169);
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .entrenador-sidebar {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
@@ -83,5 +317,25 @@
 
   .entrenador-pago-monto {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .entrenador-sidebar {
+    padding: 1rem;
+  }
+
+  .entrenador-sidebar-title {
+    font-size: 1rem;
+  }
+
+  .entrenador-pago-monto {
+    font-size: 1.8rem;
+  }
+
+  .entrenador-contrato-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

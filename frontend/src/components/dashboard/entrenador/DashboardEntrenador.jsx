@@ -32,8 +32,27 @@ const DashboardEntrenador = () => {
     nota: 'Tu pago se deposita automáticamente el día 5 de cada mes'
   };
 
-  // Generar clases de la semana
-  const weekDates = getWeekDates(currentWeek, new Date('2024-12-23'));
+  // Datos del entrenador para el sidebar
+  const datosEntrenador = {
+    nombre: user?.first_name || 'Entrenador',
+    tipoContrato: 'Indefinido', // o 'Plazo Fijo'
+    fechaIngreso: '15-03-2023',
+    fechaTermino: null, // null para indefinido, o '15-03-2025' para plazo fijo
+    especialidad: 'Spinning',
+    sueldo: '$850.000',
+    calificacion: 4.8,
+    historialPagos: [
+      { fecha: '05-01-2025', monto: '$850.000', estado: 'Pagado' },
+      { fecha: '05-12-2024', monto: '$850.000', estado: 'Pagado' },
+      { fecha: '05-11-2024', monto: '$850.000', estado: 'Pagado' },
+      { fecha: '05-10-2024', monto: '$850.000', estado: 'Pagado' },
+      { fecha: '05-09-2024', monto: '$850.000', estado: 'Pagado' }
+    ]
+  };
+
+  // Generar clases de la semana usando la fecha ACTUAL del sistema
+  const hoy = new Date();
+  const weekDates = getWeekDates(currentWeek, hoy);
   const clasesSemanales = weekDates.map((date, index) => {
     const dayName = getDayName(date);
     const dateStr = formatDateLocale(date);
@@ -42,7 +61,9 @@ const DashboardEntrenador = () => {
     
     const clasesConId = clasesDelDia.map((clase, claseIndex) => ({
       ...clase,
-      id: `${index}-${claseIndex}`
+      id: `${index}-${claseIndex}`,
+      dia: dayName,
+      fecha: dateStr
     }));
 
     return {
@@ -52,9 +73,25 @@ const DashboardEntrenador = () => {
     };
   });
 
-  // Handler
+  // Handler para ver detalles de una clase
   const handleVerDetalles = (clase) => {
     setSelectedClase(clase);
+  };
+
+  // Handler para eliminar clase
+  const handleEliminarClase = () => {
+    if (window.confirm(`¿Estás seguro de eliminar la clase "${selectedClase.nombre}"?`)) {
+      console.log('Clase eliminada:', selectedClase);
+      alert('✓ Clase eliminada correctamente');
+      setSelectedClase(null);
+    }
+  };
+
+  // Handler para reservar cliente en una clase
+  const handleReservarCliente = () => {
+    console.log('Cliente reservado en:', selectedClase);
+    alert('✓ Cliente reservado correctamente');
+    setSelectedClase(null);
   };
 
   // Loading state
@@ -134,7 +171,10 @@ const DashboardEntrenador = () => {
 
         {/* Sidebar */}
         <aside className="dashboard-entrenador-sidebar">
-          <EntrenadorSidebar pagoData={pagoData} />
+          <EntrenadorSidebar 
+            pagoData={pagoData}
+            datosEntrenador={datosEntrenador}
+          />
         </aside>
       </main>
 
@@ -143,6 +183,8 @@ const DashboardEntrenador = () => {
         <DetallesClaseModal
           clase={selectedClase}
           onClose={() => setSelectedClase(null)}
+          onEliminar={handleEliminarClase}
+          onReservar={handleReservarCliente}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-/* frontend/src/styles/dashboard/entrenador/DashboardEntrenador.css */
+/* frontend/src/components/dashboard/entrenador/DashboardEntrenador.css */
 
 .dashboard-entrenador {
   min-height: 100vh;
@@ -28,6 +28,9 @@
 .dashboard-entrenador-bienvenida-titulo {
   margin: 0 0 1.5rem 0;
   font-size: 2rem;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .dashboard-entrenador-stats-grid {
@@ -54,6 +57,9 @@
   color: #2d3748;
   font-size: 1.5rem;
   margin: 0;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .dashboard-entrenador-clases-grid {
@@ -128,6 +134,10 @@
   .dashboard-entrenador-clases-header {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .dashboard-entrenador-clases-titulo {
+    text-align: center;
   }
 }
 
