@@ -4,14 +4,6 @@ import React from 'react';
 import { esClasePasada } from '../../../utils/dateUtils';
 import './ClaseItem.css';
 
-/**
- * Componente que muestra una clase individual con sus acciones
- * @param {Object} clase - Datos de la clase
- * @param {boolean} estaReservada - Si el usuario ya reservó esta clase
- * @param {function} onReservar - Callback para reservar
- * @param {function} onCancelar - Callback para cancelar reserva
- * @param {function} onCalificar - Callback para abrir modal de calificación
- */
 const ClaseItem = ({ 
   clase, 
   estaReservada, 
@@ -19,7 +11,10 @@ const ClaseItem = ({
   onCancelar, 
   onCalificar 
 }) => {
+  // Verificar si la clase ya pasó basándose en fecha y hora REAL
   const clasePasada = esClasePasada(clase.fecha, clase.hora);
+  
+  // Parsear cupos
   const [inscritosStr, capacidadStr] = clase.cupos.split('/');
   const inscritos = parseInt(inscritosStr);
   const capacidad = parseInt(capacidadStr);
@@ -70,6 +65,7 @@ const ClaseItem = ({
               👥 {clase.cupos}
             </span>
             
+            {/* Solo mostrar "Finalizada" y "Calificar" si la clase YA PASÓ y estaba reservada */}
             {clasePasada && estaReservada ? (
               <>
                 <span style={{ 
@@ -99,16 +95,18 @@ const ClaseItem = ({
                 </button>
               </>
             ) : !clasePasada && (
+              /* Mostrar calificación del entrenador solo para clases futuras */
               <span style={{ fontSize: '0.75rem', color: '#718096' }}>
                 ⭐ {clase.calificacionEntrenador}
               </span>
             )}
           </div>
           
-          {/* Botones de acción */}
+          {/* Botones de acción - SOLO para clases que NO han pasado */}
           {!clasePasada && (
             <div style={{ marginTop: '0.5rem' }}>
-              {estaLlena ? (
+              {/* Si la clase está llena Y no está reservada por el usuario */}
+              {estaLlena && !estaReservada ? (
                 <span style={{
                   padding: '0.4rem 0.8rem',
                   background: '#e2e8f0',
@@ -121,6 +119,7 @@ const ClaseItem = ({
                   COMPLETA
                 </span>
               ) : estaReservada ? (
+                /* Si el usuario ya reservó esta clase futura */
                 <button
                   onClick={() => onCancelar(clase.id)}
                   style={{
@@ -138,6 +137,7 @@ const ClaseItem = ({
                   CANCELAR
                 </button>
               ) : (
+                /* Clase futura disponible para reservar */
                 <button
                   onClick={() => onReservar(clase.id)}
                   style={{

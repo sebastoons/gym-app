@@ -29,12 +29,10 @@
   width: 50px;
   height: 50px;
   background: white;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-logo img {
@@ -45,8 +43,10 @@
 
 .dashboard-title {
   color: #2d3748;
-  font-size: 1.75rem;
+  font-size: 1.6em;
   margin: 0;
+  font-family: 'Audiowide';
+  text-transform: uppercase;
 }
 
 .dashboard-header-right {

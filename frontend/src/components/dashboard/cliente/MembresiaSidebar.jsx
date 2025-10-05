@@ -1,97 +1,86 @@
 // frontend/src/components/dashboard/cliente/MembresiaSidebar.jsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import './MembresiaSidebar.css';
 
-/**
- * Componente Sidebar que muestra la información de membresía del cliente
- * @param {Object} membresiaData - Datos de la membresía
- */
-const MembresiaSidebar = ({ membresiaData }) => {
+const MembresiaSidebar = ({ membresiaData, onRenovar, onCancelar }) => {
+  const [mostrarHistorial, setMostrarHistorial] = useState(false);
+
   return (
-    <div style={{
-      background: 'white',
-      borderRadius: '16px',
-      padding: '1.5rem',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-      border: '2px solid #667eea'
-    }}>
-      <h3 style={{
-        color: '#2d3748',
-        fontSize: '1.1rem',
-        margin: '0 0 1rem 0'
-      }}>
+    <div className="membresia-sidebar">
+      <h3 className="membresia-sidebar-title">
         💳 Mi Membresía
       </h3>
 
-      {/* Tipo y Estado */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '1rem'
-      }}>
-        <div style={{
-          background: 'linear-gradient(135deg, #667eea, #764ba2)',
-          color: 'white',
-          padding: '0.5rem 1rem',
-          borderRadius: '20px',
-          fontWeight: '700',
-          fontSize: '0.9rem'
-        }}>
+      <div className="membresia-info-header">
+        <div className="membresia-badge-tipo">
           {membresiaData.tipo}
         </div>
-        <div style={{
-          padding: '0.25rem 0.75rem',
-          borderRadius: '20px',
-          fontSize: '0.75rem',
-          fontWeight: '600',
-          background: membresiaData.estado === 'Activa' ? '#c6f6d5' : '#fed7d7',
-          color: membresiaData.estado === 'Activa' ? '#22543d' : '#742a2a'
-        }}>
+        <div className={`membresia-badge-estado ${membresiaData.estado.toLowerCase()}`}>
           {membresiaData.estado}
         </div>
       </div>
 
-      {/* Detalles */}
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.75rem',
-        marginBottom: '1rem',
-        padding: '1rem',
-        background: '#f7fafc',
-        borderRadius: '8px'
-      }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          fontSize: '0.9rem'
-        }}>
-          <span style={{ color: '#718096' }}>Precio:</span>
-          <strong style={{ color: '#2d3748' }}>{membresiaData.precio}</strong>
+      <div className="membresia-detalles">
+        <div className="membresia-detalle-row">
+          <span className="membresia-detalle-label">Precio:</span>
+          <strong className="membresia-detalle-valor">{membresiaData.precio}</strong>
         </div>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          fontSize: '0.9rem'
-        }}>
-          <span style={{ color: '#718096' }}>Vence:</span>
-          <strong style={{ color: '#2d3748' }}>{membresiaData.fechaVencimiento}</strong>
+        <div className="membresia-detalle-row">
+          <span className="membresia-detalle-label">Vence:</span>
+          <strong className="membresia-detalle-valor">{membresiaData.fechaVencimiento}</strong>
         </div>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          fontSize: '0.9rem',
-          background: '#e6fffa',
-          padding: '0.5rem',
-          borderRadius: '6px',
-          marginTop: '0.5rem'
-        }}>
-          <span style={{ color: '#718096' }}>Días restantes:</span>
-          <strong style={{ color: '#38a169', fontSize: '1.1rem' }}>
+        <div className="membresia-detalle-row highlight">
+          <span className="membresia-detalle-label">Días restantes:</span>
+          <strong className="membresia-detalle-valor">
             {membresiaData.diasRestantes} días
           </strong>
+        </div>
+      </div>
+
+      <div className="membresia-acciones">
+        <button onClick={onRenovar} className="btn-renovar">
+          🔄 Renovar
+        </button>
+        <button onClick={onCancelar} className="btn-cancelar-membresia">
+          ❌ Cancelar
+        </button>
+      </div>
+
+      <div className="membresia-historial-toggle">
+        <button 
+          onClick={() => setMostrarHistorial(!mostrarHistorial)}
+          className="btn-toggle-historial"
+        >
+          {mostrarHistorial ? '▼' : '▶'} Historial de Pagos
+        </button>
+      </div>
+
+      {mostrarHistorial && (
+        <div className="membresia-historial">
+          {membresiaData.historialPagos.map((pago, index) => (
+            <div key={index} className="pago-item">
+              <div className="pago-fecha">{pago.fecha}</div>
+              <div className="pago-info">
+                <span className="pago-monto">{pago.monto}</span>
+                <span className={`pago-estado ${pago.estado.toLowerCase()}`}>
+                  {pago.estado}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="membresia-beneficios">
+        <h4 className="beneficios-titulo">✨ Beneficios Incluidos</h4>
+        <div className="beneficios-lista">
+          {membresiaData.beneficios.map((beneficio, index) => (
+            <div key={index} className="beneficio-item-sidebar">
+              <span className="beneficio-check">✓</span>
+              <span className="beneficio-texto">{beneficio}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

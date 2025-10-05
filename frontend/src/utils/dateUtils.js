@@ -69,18 +69,40 @@ export const getWeekLabel = (weekOffset) => {
 };
 
 /**
- * Verifica si una clase ya pasó
+ * Verifica si una clase ya pasó (comparado con fecha y hora actual)
  * @param {string} fecha - Fecha en formato YYYY-MM-DD
  * @param {string} hora - Hora en formato HH:MM - HH:MM
- * @param {Date} currentTime - Hora actual (para testing)
  * @returns {boolean} True si la clase ya pasó
  */
-export const esClasePasada = (fecha, hora, currentTime = new Date()) => {
+export const esClasePasada = (fecha, hora) => {
   const [horaInicio] = hora.split(' - ');
   const [horaNum, minNum] = horaInicio.split(':');
   
-  const fechaClase = new Date(fecha);
-  fechaClase.setHours(parseInt(horaNum), parseInt(minNum), 0, 0);
+  const fechaClase = new Date(fecha + 'T' + horaInicio + ':00');
+  const ahora = new Date();
   
-  return fechaClase < currentTime;
+  return fechaClase < ahora;
+};
+
+/**
+ * Verifica si una clase es de semana pasada
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @returns {boolean} True si la clase es de semana pasada
+ */
+export const esDeSemanaAnterior = (fecha) => {
+  const fechaClase = new Date(fecha + 'T00:00:00');
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  
+  return fechaClase < hoy;
+};
+
+/**
+ * Verifica si una clase es reservable (presente o futura, no pasada)
+ * @param {string} fecha - Fecha en formato YYYY-MM-DD
+ * @param {string} hora - Hora en formato HH:MM - HH:MM
+ * @returns {boolean} True si la clase es reservable
+ */
+export const esClaseReservable = (fecha, hora) => {
+  return !esClasePasada(fecha, hora);
 };

@@ -2,7 +2,6 @@
 
 /**
  * Datos mock de clases por día de la semana
- * En producción, estos datos vendrían del backend
  */
 export const CLASES_BASE_POR_DIA = {
   'Lunes': [
@@ -13,6 +12,14 @@ export const CLASES_BASE_POR_DIA = {
       entrenadorId: 1,
       cupos: '12/15',
       calificacionEntrenador: 4.8
+    },
+    { 
+      hora: '12:00 - 13:00', 
+      nombre: 'Yoga', 
+      entrenador: 'Ana Silva',
+      entrenadorId: 2,
+      cupos: '8/12',
+      calificacionEntrenador: 4.9
     },
     { 
       hora: '18:00 - 19:00', 
@@ -26,11 +33,19 @@ export const CLASES_BASE_POR_DIA = {
   'Martes': [
     { 
       hora: '08:00 - 09:00', 
-      nombre: 'Yoga', 
+      nombre: 'Pilates', 
       entrenador: 'Ana Silva',
       entrenadorId: 2,
       cupos: '5/12',
       calificacionEntrenador: 4.9
+    },
+    { 
+      hora: '19:00 - 20:00', 
+      nombre: 'Spinning', 
+      entrenador: 'Carlos Ruiz',
+      entrenadorId: 1,
+      cupos: '10/15',
+      calificacionEntrenador: 4.8
     }
   ],
   'Miércoles': [
@@ -41,17 +56,50 @@ export const CLASES_BASE_POR_DIA = {
       entrenadorId: 1,
       cupos: '10/15',
       calificacionEntrenador: 4.8
+    },
+    { 
+      hora: '18:30 - 19:30', 
+      nombre: 'Funcional', 
+      entrenador: 'María López',
+      entrenadorId: 3,
+      cupos: '6/15',
+      calificacionEntrenador: 4.9
     }
   ],
-  'Jueves': [],
-  'Viernes': [
+  'Jueves': [
     { 
-      hora: '07:00 - 08:00', 
+      hora: '06:30 - 07:30', 
+      nombre: 'Yoga Matutino', 
+      entrenador: 'Ana Silva',
+      entrenadorId: 2,
+      cupos: '7/12',
+      calificacionEntrenador: 4.9
+    },
+    { 
+      hora: '19:00 - 20:00', 
       nombre: 'CrossFit', 
       entrenador: 'María López',
       entrenadorId: 3,
-      cupos: '15/15',
+      cupos: '12/15',
       calificacionEntrenador: 4.9
+    }
+  ],
+  'Viernes': [
+    { 
+      hora: '07:00 - 08:00', 
+      nombre: 'Spinning', 
+      entrenador: 'Carlos Ruiz',
+      entrenadorId: 1,
+      cupos: '15/15',
+      calificacionEntrenador: 4.8
+    },
+    { 
+      hora: '18:00 - 19:00', 
+      nombre: 'Zumba', 
+      entrenador: 'Laura Martínez',
+      entrenadorId: 4,
+      cupos: '9/20',
+      calificacionEntrenador: 4.7
     }
   ],
   'Sábado': [
@@ -62,9 +110,26 @@ export const CLASES_BASE_POR_DIA = {
       entrenadorId: 2,
       cupos: '6/15',
       calificacionEntrenador: 4.9
+    },
+    { 
+      hora: '10:30 - 11:30', 
+      nombre: 'Spinning Familiar', 
+      entrenador: 'Carlos Ruiz',
+      entrenadorId: 1,
+      cupos: '8/15',
+      calificacionEntrenador: 4.8
     }
   ],
-  'Domingo': []
+  'Domingo': [
+    { 
+      hora: '10:00 - 11:00', 
+      nombre: 'Yoga Relajante', 
+      entrenador: 'Ana Silva',
+      entrenadorId: 2,
+      cupos: '4/12',
+      calificacionEntrenador: 4.9
+    }
+  ]
 };
 
 /**
@@ -85,6 +150,14 @@ export const CLASES_ENTRENADOR_BASE = {
       capacidad: 15
     }
   ],
+  'Martes': [
+    { 
+      hora: '19:00 - 20:00', 
+      nombre: 'Spinning', 
+      inscritos: 10,
+      capacidad: 15
+    }
+  ],
   'Miércoles': [
     { 
       hora: '07:00 - 08:00', 
@@ -93,6 +166,7 @@ export const CLASES_ENTRENADOR_BASE = {
       capacidad: 15
     }
   ],
+  'Jueves': [],
   'Viernes': [
     { 
       hora: '07:00 - 08:00', 
@@ -103,12 +177,13 @@ export const CLASES_ENTRENADOR_BASE = {
   ],
   'Sábado': [
     { 
-      hora: '09:00 - 10:00', 
+      hora: '10:30 - 11:30', 
       nombre: 'Spinning Familiar', 
       inscritos: 6,
       capacidad: 15
     }
-  ]
+  ],
+  'Domingo': []
 };
 
 /**
@@ -156,9 +231,6 @@ export const USER_ROLES = {
 
 /**
  * Genera clases para el entrenador con asistencia si es semana pasada
- * @param {string} dayName - Nombre del día
- * @param {number} weekOffset - Offset de la semana
- * @returns {Array} Clases del día
  */
 export const getClasesEntrenador = (dayName, weekOffset) => {
   const clasesBase = CLASES_ENTRENADOR_BASE[dayName] || [];

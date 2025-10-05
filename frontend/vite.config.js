@@ -23,7 +23,12 @@ export default defineConfig({
       input: './index.html'  // Especifica dónde está el HTML
     }
   },
-  
+
+  css: {
+    devSourcemap: true
+  },
+
   // Configuración de rutas
   base: '/'
 })
+

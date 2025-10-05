@@ -1,0 +1,236 @@
+/* frontend/src/components/dashboard/cliente/RenovarMembresiaModal.css */
+
+.renovar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.renovar-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 1000px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+.renovar-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.renovar-modal-title {
+  color: #2d3748;
+  font-size: 1.75rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.renovar-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #718096;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.renovar-modal-close:hover {
+  background: #f7fafc;
+  color: #2d3748;
+}
+
+.renovar-modal-body {
+  margin-bottom: 2rem;
+}
+
+.renovar-modal-subtitle {
+  text-align: center;
+  color: #718096;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan-card {
+  border: 3px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.plan-card.selected {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+.plan-header {
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.plan-nombre {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.plan-precio {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.plan-beneficios {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.beneficio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.beneficio-icon {
+  color: #38a169;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.beneficio-text {
+  color: #2d3748;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.plan-seleccionado-badge {
+  background: #667eea;
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.renovar-modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btn-cancelar-renovar {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #4a5568;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-cancelar-renovar:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.btn-confirmar-renovar {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-confirmar-renovar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .renovar-modal-content {
+    padding: 1.5rem;
+  }
+
+  .renovar-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .planes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .renovar-modal-footer {
+    flex-direction: column;
+  }
+
+  .btn-cancelar-renovar,
+  .btn-confirmar-renovar {
+    width: 100%;
+  }
+}
