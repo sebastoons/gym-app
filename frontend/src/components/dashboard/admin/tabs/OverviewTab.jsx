@@ -2,7 +2,7 @@
 
 import React from 'react';
 import KPICard from '../KPICard';
-//import '../../../../styles/dashboard/admin/OverviewTab.css';
+import '../../../../styles/dashboard/admin/OverviewTab.css';
 
 /**
  * Tab de resumen general del gimnasio

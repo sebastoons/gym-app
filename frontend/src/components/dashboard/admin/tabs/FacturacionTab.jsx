@@ -1,7 +1,7 @@
 // frontend/src/components/dashboard/admin/tabs/FacturacionTab.jsx
 
 import React from 'react';
-//import '../../../../styles/dashboard/admin/FacturacionTab.css';
+import '../../../../styles/dashboard/admin/FacturacionTab.css';
 
 /**
  * Tab de facturación y finanzas

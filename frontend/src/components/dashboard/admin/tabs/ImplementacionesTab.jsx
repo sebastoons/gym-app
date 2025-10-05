@@ -1,7 +1,7 @@
 // frontend/src/components/dashboard/admin/tabs/ImplementacionesTab.jsx
 
 import React from 'react';
-//import '../../../../styles/dashboard/admin/ImplementacionesTab.css';
+import '../../../../styles/dashboard/admin/ImplementacionesTab.css';
 
 /**
  * Tab de implementaciones del gimnasio

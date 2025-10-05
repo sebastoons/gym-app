@@ -1,13 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GymApp</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d37d00" />
+    <meta name="description" content="Sistema completo de gestión para gimnasios con módulos para clientes, entrenadores y administradores" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="GymApp" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/logo-192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/logo-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/logo-512.png" />
+    
+    <title>GymApp - Sistema de Gestión</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/Main.jsx"></script>
+    
+    <!-- Registrar Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registrado:', registration);
+            })
+            .catch((error) => {
+              console.log('Error al registrar Service Worker:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,240 @@
+/* frontend/src/styles/dashboard/admin/ImplementacionesTab.css */
+
+.implementaciones-tab {
+  animation: fadeIn 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== SECCIÓN DE IMPLEMENTACIONES ========== */
+.implementaciones-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.section-header h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ========== TABLA DE IMPLEMENTACIONES ========== */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Quantico', sans-serif;
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, #f7fafc, #edf2f7);
+}
+
+.admin-table th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2d3748;
+  border-bottom: 2px solid #cbd5e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.admin-table tbody tr:hover {
+  background: #f7fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table td strong {
+  color: #2d3748;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* ========== BADGES DE ESTADO ========== */
+.badge-estado {
+  padding: 0.35rem 0.85rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.badge-excelente {
+  background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+  color: #22543d;
+  box-shadow: 0 2px 8px rgba(56, 161, 105, 0.2);
+}
+
+.badge-bueno {
+  background: linear-gradient(135deg, #bee3f8, #90cdf4);
+  color: #1a365d;
+  box-shadow: 0 2px 8px rgba(49, 130, 206, 0.2);
+}
+
+.badge-regular {
+  background: linear-gradient(135deg, #fef5e7, #feebc8);
+  color: #7c2d12;
+  box-shadow: 0 2px 8px rgba(237, 137, 54, 0.2);
+}
+
+.badge-malo {
+  background: linear-gradient(135deg, #fed7d7, #fc8181);
+  color: #742a2a;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.2);
+}
+
+/* ========== FECHA ========== */
+.fecha-texto {
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ========== BOTONES ========== */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.btn-mantenimiento {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.btn-mantenimiento:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .implementaciones-section {
+    padding: 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .admin-table {
+    font-size: 0.8rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 1rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .implementaciones-section {
+    padding: 1rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .btn-mantenimiento {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+}

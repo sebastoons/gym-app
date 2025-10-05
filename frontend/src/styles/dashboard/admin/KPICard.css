@@ -1,54 +1,221 @@
 /* frontend/src/styles/dashboard/admin/KPICard.css */
 
+:root {
+  /* Gradientes Admin - Grises, Amarillos, Naranjos, Rojos */
+  --kpi-gradient-1: linear-gradient(135deg, #f59e0b, #f97316);
+  --kpi-gradient-2: linear-gradient(135deg, #ef4444, #dc2626);
+  --kpi-gradient-3: linear-gradient(135deg, #eab308, #facc15);
+  --kpi-gradient-4: linear-gradient(135deg, #6b7280, #4b5563);
+  
+  /* Sombras */
+  --kpi-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --kpi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.25);
+  
+  /* Tipografía */
+  --kpi-font-primary: 'Audiowide', cursive;
+  --kpi-font-secondary: 'Quantico', sans-serif;
+}
+
 .kpi-card {
-  color: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  color: #ffffff;
+  padding: 1.75rem;
+  border-radius: 18px;
+  box-shadow: var(--kpi-shadow);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Efecto de brillo animado en hover */
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.kpi-card:hover::before {
+  opacity: 1;
+  animation: shine 1.5s infinite;
 }
 
 .kpi-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--kpi-shadow-hover);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Contenido del KPI */
 .kpi-label {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.95;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  font-family: var(--kpi-font-secondary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .kpi-value {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+  font-size: 2.75rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  font-family: var(--kpi-font-primary);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .kpi-meta {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
   opacity: 0.9;
+  font-weight: 600;
+  font-family: var(--kpi-font-secondary);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kpi-meta::before {
+  content: '•';
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+/* Icono decorativo (opcional) */
+.kpi-icon {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: 6rem;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+  transition: all 0.4s ease;
+}
+
+.kpi-card:hover .kpi-icon {
+  transform: rotate(0deg) scale(1.1);
+  opacity: 0.15;
+}
+
+/* Animación de brillo */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 
 /* Animación al cargar */
 .kpi-card {
-  animation: fadeInScale 0.5s ease;
+  animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
 }
 
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.9) translateY(20px);
   }
   to {
     opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Variantes de stagger para animación */
+.kpi-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.kpi-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.kpi-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.kpi-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Estados especiales con colores */
+.kpi-card.warning {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  border-color: rgba(251, 146, 60, 0.3);
+}
+
+.kpi-card.danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+.kpi-card.success {
+  background: linear-gradient(135deg, #eab308, #facc15);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+.kpi-card.neutral {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  border-color: rgba(156, 163, 175, 0.3);
+}
+
+/* Efecto de pulso para valores críticos */
+.kpi-card.pulse .kpi-value {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
     transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .kpi-card {
+    padding: 1.5rem;
+  }
+
+  .kpi-value {
+    font-size: 2.25rem;
+  }
+
+  .kpi-label {
+    font-size: 0.75rem;
+  }
+
+  .kpi-meta {
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .kpi-card {
     padding: 1.25rem;
@@ -56,5 +223,47 @@
 
   .kpi-value {
     font-size: 2rem;
+  }
+
+  .kpi-label {
+    font-size: 0.7rem;
+  }
+
+  .kpi-meta {
+    font-size: 0.75rem;
+  }
+
+  .kpi-icon {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-card {
+    padding: 1rem;
+  }
+
+  .kpi-value {
+    font-size: 1.75rem;
+  }
+
+  .kpi-label {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+
+  .kpi-meta {
+    font-size: 0.7rem;
+  }
+}
+
+/* Modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .kpi-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .kpi-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 }

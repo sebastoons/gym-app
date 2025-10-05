@@ -1,7 +1,7 @@
 // frontend/src/components/dashboard/admin/tabs/ClientesTab.jsx
 
 import React from 'react';
-//import '../../../../styles/dashboard/admin/ClientesTab.css';
+import '../../../../styles/dashboard/admin/ClientesTab.css';
 
 /**
  * Tab de gestión de clientes

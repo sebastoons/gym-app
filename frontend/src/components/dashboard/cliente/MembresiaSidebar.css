@@ -32,13 +32,13 @@
 .membresia-badge-tipo {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: #ffffff;
-  padding: 0.5rem 1rem;
+  padding: 5px 15px;
   border-radius: 20px;
-  font-weight: 900;
-  font-size: 0.9rem;
+  font-weight: bold;
+  font-size: 0.8em;
   font-family: 'Audiowide', cursive;
   text-transform: uppercase;
-  letter-spacing: 0.75px;
+  letter-spacing: 0.8px;
   box-shadow: 0 3px 12px rgba(102, 126, 234, 0.3);
 }
 

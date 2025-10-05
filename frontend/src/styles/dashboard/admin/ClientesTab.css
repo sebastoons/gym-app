@@ -1,0 +1,393 @@
+/* frontend/src/styles/dashboard/admin/ClientesTab.css */
+
+.clientes-tab {
+  animation: fadeIn 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== RESUMEN DE CLIENTES ========== */
+.clientes-resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.resumen-card {
+  background: #ffffff;
+  padding: 1.75rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resumen-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.resumen-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.resumen-card:hover::before {
+  width: 8px;
+}
+
+.resumen-activos::before {
+  background: linear-gradient(180deg, #38a169, #48bb78);
+}
+
+.resumen-inactivos::before {
+  background: linear-gradient(180deg, #a0aec0, #cbd5e0);
+}
+
+.resumen-deudores::before {
+  background: linear-gradient(180deg, #e53e3e, #fc8181);
+}
+
+.resumen-por-vencer::before {
+  background: linear-gradient(180deg, #ed8936, #f6ad55);
+}
+
+.resumen-label {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resumen-valor {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  font-family: 'Audiowide', cursive;
+  line-height: 1;
+}
+
+.resumen-activos .resumen-valor {
+  color: #38a169;
+}
+
+.resumen-inactivos .resumen-valor {
+  color: #a0aec0;
+}
+
+.resumen-deudores .resumen-valor {
+  color: #e53e3e;
+}
+
+.resumen-por-vencer .resumen-valor {
+  color: #ed8936;
+}
+
+.resumen-meta {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 0.5rem;
+  font-family: 'Quantico', sans-serif;
+  font-weight: 600;
+}
+
+.resumen-meta-alerta {
+  color: #e53e3e;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+/* ========== SECCIÓN DE CLIENTES ========== */
+.clientes-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.section-header h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ========== TABLA DE CLIENTES ========== */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Quantico', sans-serif;
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, #f7fafc, #edf2f7);
+}
+
+.admin-table th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2d3748;
+  border-bottom: 2px solid #cbd5e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.admin-table tbody tr:hover {
+  background: #f7fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== VALORES ESPECÍFICOS ========== */
+.deuda-valor {
+  color: #e53e3e;
+  font-weight: 900;
+  font-size: 1.15rem;
+  font-family: 'Audiowide', cursive;
+}
+
+.fecha-texto {
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ========== BADGES ========== */
+.badge-meses {
+  padding: 0.35rem 0.85rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.badge-critico {
+  background: linear-gradient(135deg, #fed7d7, #fc8181);
+  color: #742a2a;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.2);
+}
+
+.badge-alerta {
+  background: linear-gradient(135deg, #fef5e7, #feebc8);
+  color: #7c2d12;
+  box-shadow: 0 2px 8px rgba(237, 137, 54, 0.2);
+}
+
+/* ========== BOTONES DE ACCIÓN ========== */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-recordatorio {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.2);
+}
+
+.btn-recordatorio:hover {
+  background: linear-gradient(135deg, #c53030, #e53e3e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+.btn-detalles {
+  background: transparent;
+  border: 2px solid #cbd5e0;
+  color: #4a5568;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-detalles:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+  .clientes-resumen {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .clientes-resumen {
+    grid-template-columns: 1fr;
+  }
+
+  .clientes-section {
+    padding: 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .admin-table {
+    font-size: 0.8rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 1rem 0.75rem;
+  }
+
+  .resumen-valor {
+    font-size: 2rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-recordatorio,
+  .btn-detalles {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .clientes-section {
+    padding: 1rem;
+  }
+
+  .resumen-card {
+    padding: 1.25rem;
+  }
+
+  .resumen-valor {
+    font-size: 1.75rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}

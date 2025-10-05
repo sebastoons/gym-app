@@ -1,0 +1,408 @@
+/* frontend/src/styles/dashboard/admin/OverviewTab.css */
+
+.overview-tab {
+  animation: fadeIn 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== KPIs PRINCIPALES ========== */
+.overview-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Los estilos de KPICard ya están en KPICard.css */
+
+/* ========== ALERTAS CRÍTICAS ========== */
+.overview-alertas {
+  background: linear-gradient(145deg, #fff5f5, #fed7d7);
+  border: 2px solid #fc8181;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.15);
+  animation: pulse-border 2s infinite;
+}
+
+.overview-alertas h3 {
+  color: #c53030;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.35rem;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.alertas-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.alerta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #ffffff;
+  border-radius: 12px;
+  border-left: 4px solid #e53e3e;
+  transition: all 0.3s ease;
+}
+
+.alerta-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.1);
+}
+
+.alerta-texto {
+  color: #742a2a;
+  font-family: 'Quantico', sans-serif;
+  font-size: 0.95rem;
+}
+
+.alerta-texto strong {
+  font-weight: 900;
+  color: #c53030;
+  font-family: 'Audiowide', cursive;
+  font-size: 1.1rem;
+}
+
+.btn-alerta {
+  border: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-alerta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-alerta-deudores {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: #ffffff;
+}
+
+.btn-alerta-deudores:hover {
+  background: linear-gradient(135deg, #c53030, #e53e3e);
+}
+
+.btn-alerta-membresias {
+  background: linear-gradient(135deg, #ed8936, #f6ad55);
+  color: #ffffff;
+}
+
+.btn-alerta-membresias:hover {
+  background: linear-gradient(135deg, #dd6b20, #ed8936);
+}
+
+/* ========== GRÁFICOS ========== */
+.overview-graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.grafico-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.grafico-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.grafico-card h3 {
+  margin: 0 0 2rem 0;
+  color: #2d3748;
+  font-size: 1.35rem;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ========== DISTRIBUCIÓN DE MEMBRESÍAS ========== */
+.membresias-distribucion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.membresia-item {
+  width: 100%;
+}
+
+.membresia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.membresia-nombre {
+  font-weight: 700;
+  color: #2d3748;
+  font-family: 'Quantico', sans-serif;
+}
+
+.membresia-cantidad {
+  color: #718096;
+  font-weight: 600;
+  font-family: 'Quantico', sans-serif;
+}
+
+.membresia-barra {
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.membresia-progreso {
+  height: 100%;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.membresia-progreso::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* ========== ESTADO FINANCIERO ========== */
+.estado-financiero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.financiero-item {
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.financiero-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  transition: width 0.3s ease;
+}
+
+.financiero-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.financiero-item:hover::before {
+  width: 8px;
+}
+
+.financiero-ingresos {
+  background: linear-gradient(145deg, #f0fff4, #c6f6d5);
+}
+
+.financiero-ingresos::before {
+  background: linear-gradient(180deg, #38a169, #48bb78);
+}
+
+.financiero-egresos {
+  background: linear-gradient(145deg, #fff5f5, #fed7d7);
+}
+
+.financiero-egresos::before {
+  background: linear-gradient(180deg, #e53e3e, #fc8181);
+}
+
+.financiero-utilidad {
+  background: linear-gradient(145deg, #f7fafc, #e9d5ff);
+}
+
+.financiero-utilidad::before {
+  background: linear-gradient(180deg, #667eea, #764ba2);
+}
+
+.financiero-label {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.financiero-ingresos .financiero-label {
+  color: #22543d;
+}
+
+.financiero-egresos .financiero-label {
+  color: #742a2a;
+}
+
+.financiero-utilidad .financiero-label {
+  color: #5a67d8;
+}
+
+.financiero-valor {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: 'Audiowide', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.financiero-ingresos .financiero-valor {
+  color: #38a169;
+}
+
+.financiero-egresos .financiero-valor {
+  color: #e53e3e;
+}
+
+.financiero-utilidad .financiero-valor {
+  color: #667eea;
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: #fc8181;
+  }
+  50% {
+    border-color: #e53e3e;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+  .overview-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overview-graficos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .overview-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-alertas {
+    padding: 1.5rem;
+  }
+
+  .overview-alertas h3 {
+    font-size: 1.2rem;
+  }
+
+  .alerta-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .btn-alerta {
+    width: 100%;
+  }
+
+  .grafico-card {
+    padding: 1.5rem;
+  }
+
+  .grafico-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .financiero-valor {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-alertas {
+    padding: 1rem;
+  }
+
+  .overview-alertas h3 {
+    font-size: 1.1rem;
+  }
+
+  .alerta-item {
+    padding: 0.85rem;
+  }
+
+  .grafico-card {
+    padding: 1rem;
+  }
+
+  .grafico-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .financiero-item {
+    padding: 1rem;
+  }
+
+  .financiero-valor {
+    font-size: 1.5rem;
+  }
+}

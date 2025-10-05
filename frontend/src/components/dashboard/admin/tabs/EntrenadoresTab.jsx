@@ -1,7 +1,7 @@
 // frontend/src/components/dashboard/admin/tabs/EntrenadoresTab.jsx
 
 import React from 'react';
-//import '../../../../styles/dashboard/admin/EntrenadoresTab.css';
+import '../../../../styles/dashboard/admin/EntrenadoresTab.css';
 
 /**
  * Tab de gestión de entrenadores
