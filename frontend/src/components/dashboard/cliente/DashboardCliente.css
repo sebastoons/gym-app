@@ -2,45 +2,43 @@
 
 .dashboard-cliente {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  background: #f8f9fa; /* Fondo blanco/gris claro */
 }
 
 .dashboard-cliente-main {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 360px;
   grid-template-rows: auto 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 /* ========== SECCIÓN DE BIENVENIDA ========== */
 .dashboard-cliente-bienvenida {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  padding: 2rem;
-  border-radius: 20px;
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: #ffffff;
   animation: fadeIn 0.6s ease;
-  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
-  border: 2px solid #fbbf24;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
 }
 
 .dashboard-cliente-bienvenida-titulo {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.3em;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
   font-family: 'Audiowide', cursive;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  color: #000000;
+  letter-spacing: 1.5px;
+  color: #ffffff;
 }
 
 .dashboard-cliente-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
 }
 
 /* ========== SECCIÓN DE CLASES ========== */
@@ -52,29 +50,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   flex-wrap: wrap;
   gap: 1rem;
-  background: rgba(245, 158, 11, 0.1);
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 2px solid #f59e0b;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .dashboard-cliente-clases-titulo {
-  color: #fbbf24;
-  font-size: 1.75rem;
+  color: #2d3748;
+  font-size: 1.35rem;
   margin: 0;
   font-family: 'Audiowide', cursive;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
 }
 
 .dashboard-cliente-clases-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
 /* ========== SIDEBAR ========== */
@@ -82,7 +80,7 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 /* ========== LOADING STATE ========== */
@@ -93,18 +91,18 @@
   min-height: 100vh;
   flex-direction: column;
   gap: 1rem;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: #f8f9fa;
 }
 
 .dashboard-cliente-loading .spinner {
-  border-color: #f59e0b;
-  border-top-color: #fbbf24;
+  border-color: #e2e8f0;
+  border-top-color: #667eea;
 }
 
 .dashboard-cliente-loading p {
-  color: #fbbf24;
+  color: #4a5568;
   font-family: 'Quantico', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -121,66 +119,71 @@
   }
 }
 
-/* ========== OVERRIDE STATS CARD ========== */
+/* ========== OVERRIDE STATS CARD - Fondo Blanco ========== */
 .dashboard-cliente .stats-card {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(251, 191, 36, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
+  padding: 0.85rem;
 }
 
 .dashboard-cliente .stats-card:hover {
-  background: rgba(0, 0, 0, 0.6);
-  border-color: #fbbf24;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-cliente .stats-card-value {
-  color: #fbbf24;
+  color: #ffffff;
   font-family: 'Audiowide', cursive;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .dashboard-cliente .stats-card-label {
-  color: rgba(251, 191, 36, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-family: 'Quantico', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+}
+
+.dashboard-cliente .stats-card-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+/* ========== WEEK NAVIGATOR OVERRIDE - Fondo Blanco ========== */
+.dashboard-cliente .week-navigator {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  backdrop-filter: none;
+  padding: 0.5rem 0.85rem;
+}
+
+.dashboard-cliente .week-navigator-btn {
+  color: #667eea;
+  font-family: 'Quantico', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 0.8rem;
 }
 
-.dashboard-cliente .stats-card-icon {
-  font-size: 2.5rem;
-  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
-}
-
-/* ========== WEEK NAVIGATOR OVERRIDE ========== */
-.dashboard-cliente .week-navigator {
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid #f59e0b;
-  backdrop-filter: blur(10px);
-}
-
-.dashboard-cliente .week-navigator-btn {
-  color: #fbbf24;
-  font-family: 'Quantico', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .dashboard-cliente .week-navigator-btn:hover {
-  background: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
+  background: #edf2f7;
+  color: #5a67d8;
 }
 
 .dashboard-cliente .week-navigator-label {
-  color: #fbbf24;
+  color: #2d3748;
   font-family: 'Quantico', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-size: 0.85rem;
+  min-width: 120px;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -197,19 +200,19 @@
 @media (max-width: 768px) {
   .dashboard-cliente-main {
     padding: 1rem;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .dashboard-cliente-bienvenida {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .dashboard-cliente-bienvenida-titulo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .dashboard-cliente-stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .dashboard-cliente-clases-grid {
@@ -219,17 +222,22 @@
   .dashboard-cliente-clases-header {
     flex-direction: column;
     align-items: stretch;
-    padding: 1rem;
+    padding: 0.85rem;
   }
 
   .dashboard-cliente-clases-titulo {
-    font-size: 1.35rem;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  .dashboard-cliente .week-navigator {
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .dashboard-cliente-main {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
 
   .dashboard-cliente-bienvenida {
@@ -237,6 +245,18 @@
   }
 
   .dashboard-cliente-bienvenida-titulo {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+  }
+
+  .dashboard-cliente-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-cliente .stats-card-icon {
+    font-size: 1.75rem;
+  }
+
+  .dashboard-cliente .stats-card-value {
+    font-size: 1.35rem;
   }
 }

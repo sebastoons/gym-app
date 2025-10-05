@@ -20,41 +20,21 @@ const ClaseDiaCard = ({
   onCalificar 
 }) => {
   return (
-    <div style={{
-      background: 'white',
-      borderRadius: '12px',
-      overflow: 'hidden',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
-    }}>
+    <div className="clase-dia-card">
       {/* Header del día */}
-      <div style={{
-        background: 'linear-gradient(135deg, #667eea, #764ba2)',
-        color: 'white',
-        padding: '1rem',
-        textAlign: 'center'
-      }}>
-        <h4 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem' }}>
+      <div className="clase-dia-header">
+        <h4 className="clase-dia-titulo">
           {dia.dia}
         </h4>
-        <span style={{ fontSize: '0.85rem', opacity: 0.9 }}>
+        <span className="clase-dia-fecha">
           {dia.fecha}
         </span>
       </div>
 
       {/* Clases del día */}
-      <div style={{
-        padding: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.75rem'
-      }}>
+      <div className="clase-dia-content">
         {dia.clases.length === 0 ? (
-          <p style={{
-            textAlign: 'center',
-            color: '#a0aec0',
-            fontStyle: 'italic',
-            padding: '1rem'
-          }}>
+          <p className="clase-dia-no-clases">
             Sin clases
           </p>
         ) : (

@@ -184,7 +184,6 @@ const DashboardCliente = () => {
       <Header 
         title="Mi Gimnasio" 
         roleLabel="Cliente"
-        roleColor="linear-gradient(135deg, #667eea, #764ba2)"
       />
 
       <main className="dashboard-cliente-main">

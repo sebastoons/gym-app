@@ -8,12 +8,14 @@ import '../../../styles/dashboard/common.css';
  * Componente Header reutilizable para todos los dashboards
  * @param {string} title - Título del dashboard
  * @param {string} roleLabel - Etiqueta del rol (Cliente, Entrenador, Administrador)
- * @param {string} roleColor - Color del badge del rol
  */
-const Header = ({ title, roleLabel, roleColor = 'linear-gradient(135deg, #667eea, #764ba2)' }) => {
+const Header = ({ title, roleLabel }) => {
   const { user, logout } = useAuth();
 
   if (!user) return null;
+
+  // Determinar clase de rol para estilos específicos
+  const roleClass = roleLabel.toLowerCase().replace(/\s+/g, '-');
 
   return (
     <header className="dashboard-header">
@@ -36,7 +38,7 @@ const Header = ({ title, roleLabel, roleColor = 'linear-gradient(135deg, #667eea
           <span className="dashboard-user-name">
             {user.first_name} {user.last_name}
           </span>
-          <span className="dashboard-role-badge" style={{ background: roleColor }}>
+          <span className={`dashboard-role-badge dashboard-role-${roleClass}`}>
             {roleLabel}
           </span>
           <button onClick={logout} className="dashboard-btn-logout">

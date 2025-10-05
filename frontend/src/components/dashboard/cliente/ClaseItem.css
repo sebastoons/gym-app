@@ -1,111 +1,149 @@
 /* frontend/src/components/dashboard/cliente/ClaseItem.css */
 
+/* ========== VARIABLES PERSONALIZABLES ========== */
+:root {
+  /* Colores principales */
+  --clase-item-bg: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+  --clase-item-border: rgba(245, 158, 11, 0.3);
+  --clase-item-border-hover: #f59e0b;
+  --clase-item-text-primary: #fbbf24;
+  --clase-item-text-secondary: rgba(251, 191, 36, 0.7);
+  
+  /* Colores para clase reservada */
+  --clase-item-reservada-bg: linear-gradient(145deg, #2d2a1a, #1f1d14);
+  --clase-item-reservada-border: #fbbf24;
+  
+  /* Tipografía */
+  --clase-item-font-primary: 'Audiowide', cursive;
+  --clase-item-font-secondary: 'Quantico', sans-serif;
+  
+  /* Tamaños de fuente */
+  --clase-item-hora-size: 0.85rem;
+  --clase-item-nombre-size: 0.9rem;
+  --clase-item-entrenador-size: 0.75rem;
+  --clase-item-info-size: 0.7rem;
+  --clase-item-btn-size: 0.75rem;
+  
+  /* Espaciado */
+  --clase-item-padding: 0.75rem;
+  --clase-item-gap: 0.65rem;
+  --clase-item-border-radius: 10px;
+  
+  /* Colores de botones */
+  --btn-reservar-bg: linear-gradient(135deg, #f59e0b, #d97706);
+  --btn-reservar-hover: linear-gradient(135deg, #fbbf24, #f59e0b);
+  --btn-cancelar-bg: linear-gradient(145deg, #3d3d3d, #2d2d2d);
+  --btn-cancelar-border: #f59e0b;
+  --btn-llena-bg: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+}
+
+/* ========== ESTILOS DEL ITEM ========== */
 .clase-item {
-  border-radius: 12px;
-  padding: 0.85rem;
-  background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
-  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--clase-item-border-radius);
+  padding: var(--clase-item-padding);
+  background: var(--clase-item-bg);
+  border: 2px solid var(--clase-item-border);
   transition: all 0.3s ease;
 }
 
 .clase-item:hover {
-  border-color: #f59e0b;
+  border-color: var(--clase-item-border-hover);
   background: linear-gradient(145deg, #333333, #252525);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.2);
 }
 
 .clase-item.reservada {
-  border-color: #fbbf24;
-  background: linear-gradient(145deg, #2d2a1a, #1f1d14);
-  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+  border-color: var(--clase-item-reservada-border);
+  background: var(--clase-item-reservada-bg);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.2);
 }
 
 .clase-item.reservada:hover {
-  border-color: #fbbf24;
-  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  border-color: var(--clase-item-reservada-border);
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.3);
 }
 
+/* ========== CONTENEDOR ========== */
 .clase-item-container {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: var(--clase-item-gap);
+  margin-bottom: 0.45rem;
 }
 
+/* ========== HORA ========== */
 .clase-item-hora {
   font-weight: 700;
-  color: #fbbf24;
-  font-size: 0.95rem;
-  min-width: 95px;
+  color: var(--clase-item-text-primary);
+  font-size: var(--clase-item-hora-size);
+  min-width: 85px;
   flex-shrink: 0;
-  font-family: 'Audiowide', cursive;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+  font-family: var(--clase-item-font-primary);
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
 }
 
+/* ========== DETALLES ========== */
 .clase-item-detalles {
   flex: 1;
 }
 
 .clase-item-nombre {
-  color: #fbbf24;
-  font-size: 1rem;
+  color: var(--clase-item-text-primary);
+  font-size: var(--clase-item-nombre-size);
   font-weight: 700;
-  margin-bottom: 0.25rem;
-  font-family: 'Audiowide', cursive;
+  margin-bottom: 0.2rem;
+  font-family: var(--clase-item-font-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .clase-item-entrenador {
-  font-size: 0.8rem;
-  color: rgba(251, 191, 36, 0.7);
-  margin-top: 0.15rem;
-  font-family: 'Quantico', sans-serif;
+  font-size: var(--clase-item-entrenador-size);
+  color: var(--clase-item-text-secondary);
+  margin-top: 0.1rem;
+  font-family: var(--clase-item-font-secondary);
 }
 
+/* ========== INFO (CUPOS, CALIFICACIÓN) ========== */
 .clase-item-info {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.25rem;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
   flex-wrap: wrap;
 }
 
-.clase-item-cupos {
-  font-size: 0.75rem;
-  color: rgba(251, 191, 36, 0.8);
-  font-family: 'Quantico', sans-serif;
-}
-
+.clase-item-cupos,
 .clase-item-calificacion {
-  font-size: 0.75rem;
+  font-size: var(--clase-item-info-size);
   color: rgba(251, 191, 36, 0.8);
-  font-family: 'Quantico', sans-serif;
+  font-family: var(--clase-item-font-secondary);
 }
 
+/* ========== BADGES ========== */
 .clase-item-badge-finalizada {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #000000;
   font-weight: 700;
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  font-family: 'Quantico', sans-serif;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-family: var(--clase-item-font-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+  box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
 }
 
 .clase-item-btn-calificar {
   background: transparent;
-  border: 2px solid #f59e0b;
-  color: #fbbf24;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  font-size: 0.7rem;
+  border: 2px solid var(--btn-cancelar-border);
+  color: var(--clase-item-text-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.65rem;
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s ease;
-  font-family: 'Quantico', sans-serif;
+  font-family: var(--clase-item-font-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -113,73 +151,115 @@
 .clase-item-btn-calificar:hover {
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #000000;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
 }
 
+/* ========== BOTONES DE ACCIÓN ========== */
 .clase-item-actions {
-  margin-top: 0.75rem;
+  margin-top: 0.65rem;
 }
 
 .clase-item-btn {
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.85rem;
   border: none;
-  border-radius: 8px;
-  font-size: 0.8rem;
+  border-radius: 6px;
+  font-size: var(--clase-item-btn-size);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  font-family: 'Quantico', sans-serif;
-  letter-spacing: 1px;
+  font-family: var(--clase-item-font-secondary);
+  letter-spacing: 0.75px;
 }
 
 .clase-item-btn-reservar {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: var(--btn-reservar-bg);
   color: #000000;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
 }
 
 .clase-item-btn-reservar:hover {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: var(--btn-reservar-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+  box-shadow: 0 5px 16px rgba(251, 191, 36, 0.5);
 }
 
 .clase-item-btn-cancelar {
-  background: linear-gradient(145deg, #3d3d3d, #2d2d2d);
-  color: #fbbf24;
-  border: 2px solid #f59e0b;
+  background: var(--btn-cancelar-bg);
+  color: var(--clase-item-text-primary);
+  border: 2px solid var(--btn-cancelar-border);
 }
 
 .clase-item-btn-cancelar:hover {
   background: linear-gradient(145deg, #4d4d4d, #3d3d3d);
-  border-color: #fbbf24;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  border-color: var(--clase-item-reservada-border);
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
   transform: translateY(-2px);
 }
 
 .clase-item-btn-llena {
-  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  background: var(--btn-llena-bg);
   color: rgba(251, 191, 36, 0.5);
   cursor: not-allowed;
   border: 2px solid rgba(245, 158, 11, 0.2);
 }
 
-/* Responsive */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 480px) {
-  .clase-item-hora {
-    min-width: 80px;
-    font-size: 0.85rem;
+  :root {
+    --clase-item-padding: 0.65rem;
+    --clase-item-hora-size: 0.8rem;
+    --clase-item-nombre-size: 0.85rem;
+    --clase-item-btn-size: 0.7rem;
   }
-
-  .clase-item-nombre {
-    font-size: 0.9rem;
+  
+  .clase-item-hora {
+    min-width: 75px;
   }
 
   .clase-item-info {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.35rem;
+    gap: 0.3rem;
   }
+
+  .clase-item-btn {
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* ========== TEMAS ALTERNATIVOS ========== */
+
+/* Tema Azul */
+.clase-item.tema-azul {
+  --clase-item-border: rgba(59, 130, 246, 0.3);
+  --clase-item-border-hover: #3b82f6;
+  --clase-item-text-primary: #60a5fa;
+  --clase-item-reservada-border: #3b82f6;
+  --btn-reservar-bg: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  --btn-reservar-hover: linear-gradient(135deg, #60a5fa, #3b82f6);
+  --btn-cancelar-border: #3b82f6;
+}
+
+/* Tema Verde */
+.clase-item.tema-verde {
+  --clase-item-border: rgba(16, 185, 129, 0.3);
+  --clase-item-border-hover: #10b981;
+  --clase-item-text-primary: #34d399;
+  --clase-item-reservada-border: #10b981;
+  --btn-reservar-bg: linear-gradient(135deg, #10b981, #059669);
+  --btn-reservar-hover: linear-gradient(135deg, #34d399, #10b981);
+  --btn-cancelar-border: #10b981;
+}
+
+/* Tema Morado */
+.clase-item.tema-morado {
+  --clase-item-border: rgba(139, 92, 246, 0.3);
+  --clase-item-border-hover: #8b5cf6;
+  --clase-item-text-primary: #a78bfa;
+  --clase-item-reservada-border: #8b5cf6;
+  --btn-reservar-bg: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  --btn-reservar-hover: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  --btn-cancelar-border: #8b5cf6;
 }
