@@ -2,16 +2,14 @@
 import os
 from pathlib import Path
 from datetime import timedelta
-import dj_database_url
-from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='@c&q%kj1^c_%5^m_#lgolkhpi1w)fzty5now4a*4pt7&6avw^w')
+SECRET_KEY = '@c&q%kj1^c_%5^m_#lgolkhpi1w)fzty5now4a*4pt7&6avw^w'
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',  # ✅ AGREGAR ESTO
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'authentication',
     'gym',
@@ -31,7 +29,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,13 +57,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gym_project.wsgi.application'
 
-# Database SQLite
+# Base de datos SQLite simple
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default='sqlite:///db.sqlite3'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
@@ -92,7 +88,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REST Framework
@@ -110,31 +106,23 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,  # ✅ AGREGAR ESTO
+    'BLACKLIST_AFTER_ROTATION': True,
 }
 
-# CORS Settings
-CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:5173,http://gym-aapp.netlify.app',
-    cast=Csv()
-)
+# CORS Settings - Permitir tanto localhost como Netlify
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://gym-aapp.netlify.app',
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
 # Modelo de usuario personalizado
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
-CSRF_TRUSTED_ORIGINS = config(
-    'CSRF_TRUSTED_ORIGINS',
-    default='http://localhost:5173',
-    cast=Csv()
-)
-
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://gym-aapp.netlify.app',
+]
