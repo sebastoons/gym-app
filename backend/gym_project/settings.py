@@ -1,3 +1,4 @@
+# backend/gym_project/settings.py
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -6,7 +7,7 @@ from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='tu-secret-key-super-segura-cambiala-en-produccion')
+SECRET_KEY = config('SECRET_KEY', default='@c&q%kj1^c_%5^m_#lgolkhpi1w)fzty5now4a*4pt7&6avw^w')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',  # ✅ AGREGAR ESTO
     'corsheaders',
     'authentication',
     'gym',
@@ -108,6 +110,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,  # ✅ AGREGAR ESTO
 }
 
 # CORS Settings
