@@ -14,8 +14,12 @@ def home_view(request):
         }
     })
 
+def health_check(request):  # ✅ NUEVO
+    return JsonResponse({'status': 'healthy'})
+
 urlpatterns = [
-    path('', home_view, name='home'),  # Ruta para la raíz
+    path('', home_view, name='home'),
+    path('health/', health_check, name='health'),  # ✅ NUEVO
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
 ]
